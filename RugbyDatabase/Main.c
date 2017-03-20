@@ -28,6 +28,7 @@ void main() {
 
 	choice = displayMainMenu();
 
+	//
 	switch (choice)
 	{
 	case 1:
@@ -113,6 +114,7 @@ void populateList(node_t** head) {
 			result = fscanf(in, "%d", &metres);
 			newPlayer->metres = metres - 1;
 
+			//check if end of file is reached
 			if (result < 0) {
 				break;
 			}

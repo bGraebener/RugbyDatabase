@@ -244,9 +244,12 @@ void displayDetails(node_t* head, int irfu) {
 	while (tmp != NULL) {
 		if (tmp->player->irfu == irfu) {
 			displayPlayer(tmp->player);
+			return;
 		}
 		tmp = tmp->next;
 	}
+
+	printf("Sorry, player couldn't be found!");
 }
 
 //find user specified player and update the credentials
@@ -255,5 +258,32 @@ void updatePlayer(node_t* head, int irfu) {
 }
 
 void deletePlayer(node_t* head, int irfu) {
+
+	//create two temporary 'cursor' pointers to keep track of 
+	//the current node and the one before since in a singly linked list 
+	//there is no way of going backwards
+	node_t* current = (node_t*)malloc(sizeof(node_t));
+	node_t* prior = (node_t*)malloc(sizeof(node_t));
+
+	current = head;
+
+	while (current != NULL) {
+
+		//if value matches set the next pointer of the node 
+		//before to the next node of the current pointer
+		if (current->player->irfu == irfu) {
+			prior->next = current->next;
+			free(current);
+			printf("\nDeleted Player..");
+			return;
+		}
+
+		//keep track of the current position and the node before
+		prior = current;
+		current = current->next;
+	}
+
+	printf("\nCouldn't find player. Nothing to delete.");
+
 
 }
