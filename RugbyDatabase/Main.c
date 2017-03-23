@@ -42,15 +42,11 @@ void main() {
 		case 2:
 			displayPlayers(list);
 			break;
-		case 3:
-			printf("Enter Irfu Number of player to display: ");
-			scanf("%d", &irfu);
-			displayDetails(list, irfu);
+		case 3:			
+			displayDetails(list);
 			break;
-		case 4:
-			printf("Enter Irfu Number of player to update: ");
-			scanf("%d", &irfu);
-			updatePlayer(list, irfu);
+		case 4:			
+			updatePlayer(list);
 			break;
 		case 5:
 			printf("Enter Irfu Number of player to delete: ");

@@ -115,8 +115,6 @@ const char* findPosition(position position) {
 
 
 
-
-
 int getIrfu(player_t* head) {
 		
 	player_t* tmp;
@@ -174,7 +172,7 @@ player_t* createPlayer(player_t* head) {
 	printf("Enter Players' club: ");
 	scanf("%s", newPlayer->club);
 
-	//check if email has both an '@' an a dot 
+	//check if email has both an '@' an a '.com' 
 	do {
 		printf("Enter Players' email: ");
 		scanf("%s", newPlayer->email);
