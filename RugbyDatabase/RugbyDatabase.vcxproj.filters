@@ -32,6 +32,9 @@
     <ClInclude Include="Player.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerList.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.c">
@@ -41,6 +44,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Player.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerList.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

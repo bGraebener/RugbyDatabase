@@ -26,11 +26,13 @@
     <ClInclude Include="Main.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.c" />
     <ClCompile Include="Menu.c" />
     <ClCompile Include="Player.c" />
+    <ClCompile Include="PlayerList.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E49D2191-1E7F-41C7-BEC1-8FC2A25526AB}</ProjectGuid>

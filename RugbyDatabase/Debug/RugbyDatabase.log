@@ -1,36 +1,68 @@
-﻿  Menu.c
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(23): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+﻿  Player.c
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(38): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(41): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(44): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(47): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(62): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(65): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(68): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(71): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(88): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(91): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(94): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(97): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(100): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(103): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(106): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: Siehe Deklaration von "strcpy"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(132): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(160): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(163): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(166): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(169): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(172): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(175): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(180): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(154): warning C4101: "dot": Unreferenzierte lokale Variable
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(153): warning C4101: "at": Unreferenzierte lokale Variable
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(234): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(251): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\player.c(270): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
+  Menu.c
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(42): warning C4013: "getch" undefiniert; Annahme: extern mit Rückgabetyp int
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: Siehe Deklaration von "fopen"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(35): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(26): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: Siehe Deklaration von "fscanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(45): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(36): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(51): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\conio.h(452): note: Siehe Deklaration von "getch"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(90): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(85): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(161): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(123): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(136): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(139): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(142): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(145): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(148): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(151): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(159): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(197): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(214): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-c:\d-drive\coding\workspace\visualstudio\c\rugbydatabase\rugbydatabase\menu.c(233): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: Siehe Deklaration von "scanf"
-  RugbyDatabase.vcxproj -> C:\D-Drive\Coding\Workspace\VisualStudio\C\RugbyDataBase\Debug\RugbyDatabase.exe
-  RugbyDatabase.vcxproj -> C:\D-Drive\Coding\Workspace\VisualStudio\C\RugbyDataBase\Debug\RugbyDatabase.pdb (Full PDB)
+  Code wird generiert...
+  RugbyDatabase.vcxproj -> C:\D-Drive\Coding\Workspace\VisualStudio\C\RugbyDatabase\Debug\RugbyDatabase.exe
+  RugbyDatabase.vcxproj -> C:\D-Drive\Coding\Workspace\VisualStudio\C\RugbyDatabase\Debug\RugbyDatabase.pdb (Full PDB)
