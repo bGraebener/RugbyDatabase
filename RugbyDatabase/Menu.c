@@ -1,3 +1,6 @@
+//declarations of all functions that display a menu to the user
+//also the function that verifies the user at the beginning of the program
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -103,7 +106,7 @@ int displayUpdateMenu() {
 	printf("\n9 - Position");
 	printf("\n10 - Tackles missed");
 	printf("\n11 - Metres per game");
-	printf("\n-1 - Finished");
+	printf("\n12 - Finished");
 	printf("\nYour choice: ");
 	scanf("%d", &choice);
 

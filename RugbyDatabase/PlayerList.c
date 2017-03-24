@@ -3,47 +3,14 @@
 #include <string.h>
 
 #include "PlayerList.h"
-
-//function that displays all players' details from the database
-void displayPlayers(player_t* head) {
-	player_t* tmp = head;
-
-	while (tmp != NULL) {
-		displayPlayer(tmp);
-		tmp = tmp->next;
-	}
-}
-
-
-//find user specified player and display the details
-void displayDetails(player_t* head) {
-	
-	//ask the user for either player name or irfu
-	int playerLocation;	
-	playerLocation = searchForPlayer(head);
-
-	if (playerLocation < 0) {
-		printf("Player not found!");
-		return;
-	}
-
-	player_t* tmp = head;
-
-	//iterate to player in list
-	for (int i = 0; i < playerLocation; i++) {
-		tmp = tmp->next;
-	}
-
-	//display player information
-	displayPlayer(tmp);
-}
+#include "PlayerListUtil.h"
 
 //find user specified player and update the information
 void updatePlayer(player_t* head) {
 	
 	int choice;
 	int playerLocation;
-	int pos, tackles, metres;
+	int pos, tackles, metres, irfu;
 	
 	playerLocation = searchForPlayer(head);
 
@@ -61,14 +28,16 @@ void updatePlayer(player_t* head) {
 	//display player information
 	displayPlayer(tmp);
 
+	//update players information until user quits update menu
 	do {		
 		choice = displayUpdateMenu();
 
 		switch (choice)
 		{
 		case 1:
-			printf("Enter new IRFU: ");
-			scanf("%d", &tmp->irfu);
+			//check for unique irfu
+			irfu = getIrfu(head);
+			tmp->irfu = irfu;
 			break;
 		case 2:
 			printf("Enter new First Name: ");
@@ -109,54 +78,13 @@ void updatePlayer(player_t* head) {
 		case 11:
 			metres = getPlayerMetres();
 			tmp->metres = metres - 1;
-			break;
-		
+			break;		
 		default:
 			break;
 		}
 
+	} while (choice != 12);
 
-
-
-	} while (choice != -1);
-
-
-
-	//TODO
-}
-
-//function that gives the user the option to find a player either by name or by irfu
-int searchForPlayer(player_t* head) {
-
-	int choice;
-	int playerLocation;
-	int irfu;
-	char firstName[20];
-	char lastName[20];
-
-	do {
-		printf("\n1 - Find Player by name");
-		printf("\n2 - Find Player by irfu number");
-		printf("\nYour choice: ");
-		scanf("%d", &choice);
-	} while (choice != 1 && choice != 2);
-
-	if (choice == 1) {
-		printf("Enter Player first and last name: ");
-		scanf("%s %s", firstName, lastName);
-		playerLocation = searchByName(head, firstName, lastName);
-	}
-	else if (choice == 2) {
-		printf("Enter Player irfu: ");
-		scanf("%d", &irfu);
-		playerLocation = searchByIrfu(head, irfu);
-	}
-
-	if (playerLocation < 0) {		
-		return -1;
-	}
-
-	return playerLocation;
 }
 
 void deletePlayer(player_t** head, int irfu) {
@@ -199,10 +127,7 @@ void deleteFirst(player_t** head) {
 	free(tmp);
 }
 
-void generateStats(player_t* head) {
 
-
-}
 
 
 
@@ -312,42 +237,4 @@ void insertSorted(player_t** head, player_t* newPlayer) {
 	//insert new node
 	previous->next = newPlayer;
 	newPlayer->next = tmp;
-}
-
-int searchByIrfu(player_t* head, int irfu) {
-	player_t* tmp = head;
-	int location = -1;
-
-	for (; tmp != NULL; tmp = tmp->next) {
-		location++;
-		if (tmp->irfu == irfu) {
-			return location;
-		}
-	}
-	return -1;
-}
-
-int searchByName(player_t* head, char* firstName, char* lastName) {
-
-	player_t* tmp = head;
-	int location = -1;
-
-	for (; tmp != NULL; tmp = tmp->next) {
-		location++;
-		if (strcmp(tmp->lastName, lastName) == 0 && strcmp(tmp->firstName, firstName) == 0) {
-			return location;
-		}
-	}
-	return -1;
-}
-
-int size(player_t* head) {
-	int size = 0;
-
-	player_t* tmp = head;
-
-	for (; tmp != NULL; tmp = tmp->next, size++);
-
-	return size;
-
 }
