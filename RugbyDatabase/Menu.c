@@ -86,3 +86,26 @@ int displayMainMenu() {
 
 	return choice;
 }
+
+int displayUpdateMenu() {
+
+	int choice;
+
+	printf("\n\nWhat fields do you want to update?");
+	printf("\n1 - IRFU");
+	printf("\n2 - First Name");
+	printf("\n3 - Last Name");
+	printf("\n4 - Age");
+	printf("\n5 - Weight");
+	printf("\n6 - Height");
+	printf("\n7 - Email");
+	printf("\n8 - Club");
+	printf("\n9 - Position");
+	printf("\n10 - Tackles missed");
+	printf("\n11 - Metres per game");
+	printf("\n-1 - Finished");
+	printf("\nYour choice: ");
+	scanf("%d", &choice);
+
+	return choice;
+}

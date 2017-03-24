@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Player.h"
+#include "Menu.h"
 
 //function prototypes for the list of players
 void displayPlayers(player_t*);
@@ -15,8 +16,9 @@ void insertSorted(player_t**, player_t*);
 
 int size(head);
 
+int searchForPlayer(player_t*);
 int searchByIrfu(player_t*, int);
 int searchByName(player_t*, char*, char*);
+void deleteFirst(player_t**);
 
 //TODO
-void deleteFirst(player_t**);

@@ -55,8 +55,7 @@ void main() {
 			break;
 		case 6:
 			break;
-		case 7:
-			printf("Goodbye!");
+		case 7:			
 			break;
 		default:
 			break;
@@ -69,6 +68,8 @@ void main() {
 
 	//free dynamically allocated memory
 	free(list);
+
+	printf("Goodbye!");
 
 	_getch();
 }

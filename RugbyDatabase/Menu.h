@@ -14,3 +14,4 @@ typedef struct {
 boolean displayStartMenu();
 int displayMainMenu();
 boolean checkCredentials(login*, char*, char[6]);
+int displayUpdateMenu();
