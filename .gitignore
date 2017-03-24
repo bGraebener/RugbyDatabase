@@ -3,3 +3,4 @@
 !.gitignore
 !./RugbyDatabase/*.c
 !./RugbyDatabase/*.h
+!./RugbyDatabase/*.txt
