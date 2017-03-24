@@ -68,7 +68,7 @@ void main() {
 	printToFile(list);
 
 	//free dynamically allocated memory
-	free(list);
+	freeLinkedList(list);
 
 	printf("Goodbye!");
 
@@ -112,4 +112,18 @@ void printToFile(player_t* head) {
 		printf("Couldn't write to file");
 		return;
 	}
+}
+
+
+//iterate over the linked list and free the memory of every node 
+void freeLinkedList(player_t* head) {
+
+	player_t* tmp;
+
+	while (head != NULL) {
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+
 }

@@ -1,3 +1,5 @@
+//c file for all function implementations that alter the state of the linked list
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -12,6 +14,7 @@ void updatePlayer(player_t* head) {
 	int playerLocation;
 	int pos, tackles, metres, irfu;
 	
+	//find the player in the linked list
 	playerLocation = searchForPlayer(head);
 
 	if (playerLocation < 0) {
@@ -19,8 +22,10 @@ void updatePlayer(player_t* head) {
 		return;
 	}
 
+	//'cursor' pointer
 	player_t* tmp = head;
 
+	//set the 'cursor' pointer to that player
 	for (int i = 0; i < playerLocation; i++) {
 		tmp = tmp->next;
 	}
@@ -95,7 +100,7 @@ void deletePlayer(player_t** head, int irfu) {
 	player_t* tmp;
 	player_t* prior;
 
-	tmp = head;
+	tmp = *head;
 
 	//find location of player in list
 	int position = searchByIrfu(*head, irfu);

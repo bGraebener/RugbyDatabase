@@ -1,3 +1,6 @@
+//header file for a player 
+//defines the player struct and functions that perform operations on a single player
+
 #pragma once
 
 //custom boolean type
@@ -42,10 +45,6 @@ void displayPlayer(player_t*);
 const char* findPosition(position);
 const char* findTackles(tackles_missed);
 const char* findMetres(metres);
-int getPlayerPosition();
-int getPlayerMetres();
-int getPlayerTackles();
 player_t* createPlayer(player_t*);
 int getIrfu(player_t* head);
-
 int findLocation(player_t*, int);

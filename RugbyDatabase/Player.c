@@ -1,16 +1,19 @@
+//source file with all implementations for function that operate on a player struct
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "Player.h"
+#include "PlayerListUtil.h"
 
 //function that displays a sinlge players' details
 void displayPlayer(player_t* player) {
 
 	//translate position, tackles and metres enums into strings for display
-	const char* pos = findPosition(player->position);
-	const char* metres = findMetres(player->metres);
-	const char* tackles = findTackles(player->tackles);
+	char* pos = findPosition(player->position);
+	char* metres = findMetres(player->metres);
+	char* tackles = findTackles(player->tackles);
 
 	//display all details
 	printf("\n\nPlayer Stats: ");
@@ -24,6 +27,11 @@ void displayPlayer(player_t* player) {
 	printf("\nPlayer position: %s ", pos);
 	printf("\nTackles missed per game: %s", tackles);
 	printf("\nMetres per Game: %s", metres);
+
+	//free dynamic strings
+	free(pos);
+	free(metres);
+	free(tackles);
 
 }
 
@@ -73,7 +81,6 @@ const char* findTackles(tackles_missed tackles) {
 	default:
 		break;
 	}
-
 	return tacklesMiss;
 }
 
@@ -108,9 +115,7 @@ const char* findPosition(position position) {
 	default:
 		break;
 	}
-
 	return pos;
-
 }
 
 
@@ -192,57 +197,6 @@ player_t* createPlayer(player_t* head) {
 }
 
 
-// convenience function for prompting for players metres per game
-int getPlayerMetres() {
-
-	printf("\nEnter metres player makes per game: ");
-	printf("\n1 - None");
-	printf("\n2 - Less than 10");
-	printf("\n3 - Less than 20");
-	printf("\n4 - More than 20");
-	printf("\nPosition: ");
-
-	int metres;
-	scanf("%d", &metres);
-
-	return metres;
-}
-
-
-// convenience function for prompting for players tackles per game
-int getPlayerTackles() {
-
-	printf("\nEnter tackles a player misses per game: ");
-	printf("\n1 - Never");
-	printf("\n2 - Less than 3");
-	printf("\n3 - Less than 5");
-	printf("\n4 - More than 5");
-	printf("\nPosition: ");
-
-	int tackles;
-	scanf("%d", &tackles);
-
-	return tackles;
-}
-
-// convenience function for prompting for players position
-int getPlayerPosition() {
-
-	printf("\nEnter Players' position: ");
-	printf("\n1 - Prop");
-	printf("\n2 - Hooker");
-	printf("\n3 - Second Row");
-	printf("\n4 - Back Row");
-	printf("\n5 - Half Back");
-	printf("\n6 - Centre");
-	printf("\n7 - Winger/Full Back");
-	printf("\nPosition: ");
-
-	int pos;
-	scanf("%d", &pos);
-
-	return pos;
-}
 
 
 //function to find a new players position inside the linked list by order of irfu number

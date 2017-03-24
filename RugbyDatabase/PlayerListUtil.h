@@ -10,3 +10,6 @@ int searchByName(player_t*, char*, char*);
 void displayPlayers(player_t*);
 void displayDetails(player_t*);
 void generateStats(player_t*);
+int getPlayerPosition();
+int getPlayerMetres();
+int getPlayerTackles();
