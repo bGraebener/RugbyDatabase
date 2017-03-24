@@ -114,7 +114,7 @@ const char* findPosition(position position) {
 }
 
 
-
+//function to retrieve unique irfu number from user
 int getIrfu(player_t* head) {
 		
 	player_t* tmp;
@@ -147,10 +147,8 @@ player_t* createPlayer(player_t* head) {
 	player_t* newPlayer = (player_t*) malloc(sizeof(player_t));
 	player_t* tmp;
 	tmp = head;
-
-	boolean at;
-	boolean dot;
 	
+	//get players unique irfu number
 	newPlayer->irfu = getIrfu(head);
 
 	//get new player information

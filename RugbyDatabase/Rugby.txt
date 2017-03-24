@@ -6,4 +6,5 @@
 7 John Healy 55 197.000000 15.000000 asdf sdfasd@asdf.asd 2 2 2 
 9 Michael Slattery 75 190.000000 70.000000 ClareCastle asdf@sdf.sf 6 1 1 
 10 Sasha Miller 19 190.000000 78.000000 Tralee sdf@sdff.sdf 4 1 1 
+15 Bas Grae 36 170.000000 68.000000 Galway asdf@asdf.com 1 2 3 
 55 Orla Slattery 36 165.000000 60.000000 Galway asdf@asd.asd 3 4 1 
