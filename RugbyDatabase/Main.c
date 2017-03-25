@@ -32,7 +32,7 @@ void main() {
 	
 	choice = displayMainMenu();
 
-	while (choice != 7) {
+	while (choice != 9) {
 		//
 		switch (choice)
 		{
@@ -47,7 +47,7 @@ void main() {
 			displayDetails(list);
 			break;
 		case 4:			
-			updatePlayer(list);
+			updatePlayer(&list);
 			break;
 		case 5:
 			printf("Enter Irfu Number of player to delete: ");
@@ -55,8 +55,12 @@ void main() {
 			deletePlayer(&list, irfu);
 			break;
 		case 6:
+			generateStats(list);
 			break;
 		case 7:			
+			break;
+		case 8:
+			displayInOrder(list);
 			break;
 		default:
 			break;

@@ -83,7 +83,9 @@ int displayMainMenu() {
 	printf("\n4 - Update a players statistic");
 	printf("\n5 - Delete a player");
 	printf("\n6 - Generate statistics");
-	printf("\n7 - Quit");
+	printf("\n7 - Display report");
+	printf("\n8 - List players in order");
+	printf("\n9 - Quit");
 	printf("\nYour choice: ");
 	scanf("%d", &choice);
 

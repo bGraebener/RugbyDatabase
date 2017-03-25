@@ -13,3 +13,6 @@ void generateStats(player_t*);
 int getPlayerPosition();
 int getPlayerMetres();
 int getPlayerTackles();
+
+//TODO
+void displayInOrder(player_t*);

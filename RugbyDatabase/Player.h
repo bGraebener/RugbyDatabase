@@ -21,6 +21,10 @@ typedef enum {
 	NONE, LESS_TEN, LESS_TWENTY, MORE_TWENTY 
 }metres;
 
+typedef enum {
+	IRFU, HEIGHT
+}sortField;
+
 //public player struct
 typedef struct player_t{
 
@@ -47,4 +51,4 @@ const char* findTackles(tackles_missed);
 const char* findMetres(metres);
 player_t* createPlayer(player_t*);
 int getIrfu(player_t* head);
-int findLocation(player_t*, int);
+int findLocation(player_t*, int, sortField);

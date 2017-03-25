@@ -7,6 +7,8 @@
 #include "Player.h"
 #include "PlayerListUtil.h"
 
+
+
 //function that displays a sinlge players' details
 void displayPlayer(player_t* player) {
 
@@ -197,24 +199,43 @@ player_t* createPlayer(player_t* head) {
 }
 
 
-
-
 //function to find a new players position inside the linked list by order of irfu number
-int findLocation(player_t* head, int irfu) {
-
+int findLocation(player_t* head, int num, sortField sortField) {
+		
 	//temporary head node copy
 	player_t* tmp = head;
 	int position = 0;
+	
 
+	switch (sortField)	
+	{
 	//determine correct position by checking irfu number against existing records
-	while (tmp->irfu < irfu) {
-		position++;
-		tmp = tmp->next;
+	case IRFU:
+		while (tmp->irfu < num) {
+			position++;
+			tmp = tmp->next;
 
-		if (tmp == NULL) {
-			break;
+			if (tmp == NULL) {
+				break;
+			}
 		}
+		break;
+	//determine correct position by checking height against existing records
+	case HEIGHT:
+		while (tmp->height < num) {
+			position++;
+			tmp = tmp->next;
+
+			if (tmp == NULL) {
+				break;
+			}
+		}
+		break;
+
+	default:
+		break;
 	}
+	
 	return position;
 }
 

@@ -8,22 +8,23 @@
 #include "PlayerListUtil.h"
 
 //find user specified player and update the information
-void updatePlayer(player_t* head) {
+void updatePlayer(player_t** head) {
 	
 	int choice;
 	int playerLocation;
-	int pos, tackles, metres, irfu;
+	int pos, tackles, metres, irfu, oldIrfu;
+	char* email = (char*)malloc(sizeof(char) * 35);
+
+	//'cursor' pointer
+	player_t* tmp = *head;
 	
 	//find the player in the linked list
-	playerLocation = searchForPlayer(head);
+	playerLocation = searchForPlayer(tmp);
 
 	if (playerLocation < 0) {
 		printf("Player not found!");
 		return;
 	}
-
-	//'cursor' pointer
-	player_t* tmp = head;
 
 	//set the 'cursor' pointer to that player
 	for (int i = 0; i < playerLocation; i++) {
@@ -41,7 +42,7 @@ void updatePlayer(player_t* head) {
 		{
 		case 1:
 			//check for unique irfu
-			irfu = getIrfu(head);
+			irfu = getIrfu(*head);
 			tmp->irfu = irfu;
 			break;
 		case 2:
@@ -65,8 +66,15 @@ void updatePlayer(player_t* head) {
 			scanf("%d", &tmp->height);
 			break;
 		case 7:
-			printf("Enter new Email: ");
-			scanf("%s", tmp->email);
+			do {
+				printf("Enter new Email: ");
+				scanf("%s", email);
+
+			} while (strstr(email, "@") == NULL || strstr(email, ".com") == NULL);
+
+			strcpy(tmp->email, email);
+			free(email);
+
 			break;
 		case 8:
 			printf("Enter new Club: ");
@@ -131,9 +139,6 @@ void deleteFirst(player_t** head) {
 	*head = tmp->next;
 	free(tmp);
 }
-
-
-
 
 
 //function that populates the list at the beginning of the program from the file "Rugby.txt"
@@ -220,7 +225,7 @@ void insertSorted(player_t** head, player_t* newPlayer) {
 	}
 
 	//find the right position by order of irfu number
-	int position = findLocation(*head, newPlayer->irfu);
+	int position = findLocation(*head, newPlayer->irfu, IRFU);
 
 	//if irfu number is first in list add to the beginning
 	if (position == 0) {

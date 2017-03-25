@@ -2,6 +2,8 @@
 
 #include <stdlib.h>
 #include "PlayerListUtil.h"
+#include "PlayerList.h"
+#include "Main.h"
 
 
 //function that displays all players' details from the database
@@ -109,6 +111,84 @@ void generateStats(player_t* head) {
 	//TODO
 }
 
+player_t* copyPlayer(player_t* old) {
+	player_t* newPlayer = (player_t*)malloc(sizeof(player_t));
+
+	//copy ints
+	newPlayer->irfu = old->irfu;
+	newPlayer->age = old->age;
+	newPlayer->weight= old->weight;
+	newPlayer->height= old->height;
+	newPlayer->metres = old->metres;
+	newPlayer->position = old->position;
+	newPlayer->tackles = old->tackles;
+
+
+	//copy strings
+	strcpy(newPlayer->firstName , old->firstName);
+	strcpy(newPlayer->lastName, old->lastName);
+	strcpy(newPlayer->email, old->email);
+	strcpy(newPlayer->club, old->club);
+
+	newPlayer->next = NULL;
+
+	return newPlayer;
+}
+
+//function that displays players of two positions in order of their height
+void displayInOrder(player_t* head) {
+	//TODO
+
+	player_t* tmp = head;
+
+	player_t* newList = NULL;
+	player_t* newListTmp = newList;
+	player_t* newListPrev;
+
+	//make a new list in order of height consisting only of second_row and back_row players
+	while (tmp != NULL) {
+
+		if (tmp->position == SECOND_ROW || tmp->position == BACK_ROW) {
+
+			player_t* newPlayer = copyPlayer(tmp);
+
+			if (newList == NULL) {
+				addFirst(&newList, newPlayer);
+				tmp = tmp->next;
+				continue;
+			}
+
+			//find the right position by order of height
+			int position = findLocation(newList, tmp->height, HEIGHT);
+
+			//if irfu number is first in list add to the beginning
+			if (position == 0) {
+				addFirst(&newList, newPlayer);
+				tmp = tmp->next;
+				continue;
+			}
+
+			player_t* newListTmp = newList;
+			player_t* newListPrev;
+
+			for (int i = 0; i < position; i++) {
+				newListPrev = newListTmp;
+				newListTmp = newListTmp->next;
+			}
+
+			newListPrev->next = newPlayer;
+			newPlayer->next = newListTmp;
+		}
+
+		tmp = tmp->next;
+	}
+
+	
+	displayPlayers(newList);
+
+	freeLinkedList(newList);
+
+}
 
 // convenience function for prompting for players metres per game
 int getPlayerMetres() {
