@@ -7,6 +7,8 @@
 
 #include "Menu.h"
 
+// non-global function prototype
+boolean checkCredentials(login*, char*, char[6]);
 
 //entry point to the application 
 //reads the login records from a file and 
@@ -40,16 +42,17 @@ boolean displayStartMenu() {
 
 	//get user password
 	printf("Enter your password: ");
+
 	//mask user input for password
 	for (int i = 0; i < 6; i++) {
 		password[i] = getch();
 		printf("*");
 	}
 
-	return checkCredentials(records, username, password);
-	
+	return checkCredentials(records, username, password);	
 }
 
+//function that checks the user entered name and password against the records in the login array and returns whether they match or not
 boolean checkCredentials(login* records, char* username, char password[6]) {
 	int match = 1;
 	for (int i = 0; i < 3; i++) {
@@ -71,6 +74,7 @@ boolean checkCredentials(login* records, char* username, char password[6]) {
 	return false;
 }
 
+//function that prompts the user with the main menu options and returns the users choice
 int displayMainMenu() {
 
 	int choice;
@@ -83,7 +87,7 @@ int displayMainMenu() {
 	printf("\n4 - Update a players statistic");
 	printf("\n5 - Delete a player");
 	printf("\n6 - Generate statistics");
-	printf("\n7 - Display report");
+	printf("\n7 - Print report to file");
 	printf("\n8 - List players in order");
 	printf("\n9 - Quit");
 	printf("\nYour choice: ");
@@ -113,4 +117,56 @@ int displayUpdateMenu() {
 	scanf("%d", &choice);
 
 	return choice;
+}
+
+// convenience function for prompting for players metres per game
+int getPlayerMetres() {
+
+	printf("\nEnter metres player makes per game: ");
+	printf("\n1 - None");
+	printf("\n2 - Less than 10");
+	printf("\n3 - Less than 20");
+	printf("\n4 - More than 20");
+	printf("\nPosition: ");
+
+	int metres;
+	scanf("%d", &metres);
+
+	return metres;
+}
+
+
+// convenience function for prompting for players tackles per game
+int getPlayerTackles() {
+
+	printf("\nEnter tackles a player misses per game: ");
+	printf("\n1 - Never");
+	printf("\n2 - Less than 3");
+	printf("\n3 - Less than 5");
+	printf("\n4 - More than 5");
+	printf("\nPosition: ");
+
+	int tackles;
+	scanf("%d", &tackles);
+
+	return tackles;
+}
+
+// convenience function for prompting for players position
+int getPlayerPosition() {
+
+	printf("\nEnter Players' position: ");
+	printf("\n1 - Prop");
+	printf("\n2 - Hooker");
+	printf("\n3 - Second Row");
+	printf("\n4 - Back Row");
+	printf("\n5 - Half Back");
+	printf("\n6 - Centre");
+	printf("\n7 - Winger/Full Back");
+	printf("\nPosition: ");
+
+	int pos;
+	scanf("%d", &pos);
+
+	return pos;
 }

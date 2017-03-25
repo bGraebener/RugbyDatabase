@@ -9,13 +9,12 @@
 #include "PlayerListUtil.h"
 
 void main() {
-
 	
 	int choice;
 	int irfu;
 	int location;
 
-
+	//verify user
 	boolean login = displayStartMenu();
 
 	if (!login) {
@@ -28,12 +27,12 @@ void main() {
 	populateList(&list);
 
 	player_t* newPlayer;
-
 	
+	//display user menu
 	choice = displayMainMenu();
 
 	while (choice != 9) {
-		//
+		
 		switch (choice)
 		{
 		case 1:
@@ -68,7 +67,7 @@ void main() {
 		choice = displayMainMenu();
 	};
 
-	//print database to file
+	//print linked list to file
 	printToFile(list);
 
 	//free dynamically allocated memory
@@ -118,16 +117,3 @@ void printToFile(player_t* head) {
 	}
 }
 
-
-//iterate over the linked list and free the memory of every node 
-void freeLinkedList(player_t* head) {
-
-	player_t* tmp;
-
-	while (head != NULL) {
-		tmp = head;
-		head = head->next;
-		free(tmp);
-	}
-
-}

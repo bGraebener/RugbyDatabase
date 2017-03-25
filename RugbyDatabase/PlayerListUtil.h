@@ -3,16 +3,15 @@
 #include "Player.h"
 
 //function prototype declarations
+
+//primary functions
+void displayPlayers(player_t*);
+int displayDetails(player_t*);
+void displayInOrder(player_t*);
+void generateStats(player_t*);
+
+//utility functions
 int size(player_t*);
-int searchForPlayer(player_t*);
 int searchByIrfu(player_t*, int);
 int searchByName(player_t*, char*, char*);
-void displayPlayers(player_t*);
-void displayDetails(player_t*);
-void generateStats(player_t*);
-int getPlayerPosition();
-int getPlayerMetres();
-int getPlayerTackles();
-
-//TODO
-void displayInOrder(player_t*);
+int findLocation(player_t*, int, sortField);

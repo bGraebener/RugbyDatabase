@@ -16,5 +16,7 @@ typedef struct {
 //function prototypes
 boolean displayStartMenu();
 int displayMainMenu();
-boolean checkCredentials(login*, char*, char[6]);
 int displayUpdateMenu();
+int getPlayerPosition();
+int getPlayerMetres();
+int getPlayerTackles();

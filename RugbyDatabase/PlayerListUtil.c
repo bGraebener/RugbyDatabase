@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "PlayerListUtil.h"
 #include "PlayerList.h"
-#include "Main.h"
+
 
 
 //function that displays all players' details from the database
@@ -17,15 +17,37 @@ void displayPlayers(player_t* head) {
 }
 
 //find user specified player and display the details
-void displayDetails(player_t* head) {
-
-	//ask the user for either player name or irfu
+int displayDetails(player_t* head) {
+		
+	int choice;
 	int playerLocation;
-	playerLocation = searchForPlayer(head);
+	int irfu;
+	char firstName[20];
+	char lastName[20];
+
+	//give option irfu or name
+	do {
+		printf("\n1 - Find Player by name");
+		printf("\n2 - Find Player by irfu number");
+		printf("\nYour choice: ");
+		scanf("%d", &choice);
+	} while (choice != 1 && choice != 2);
+
+	//call specific function according to user choice
+	if (choice == 1) {
+		printf("Enter Player first and last name: ");
+		scanf("%s %s", firstName, lastName);
+		playerLocation = searchByName(head, firstName, lastName);
+	}
+	else if (choice == 2) {
+		printf("Enter Player irfu: ");
+		scanf("%d", &irfu);
+		playerLocation = searchByIrfu(head, irfu);
+	}
 
 	if (playerLocation < 0) {
 		printf("Player not found!");
-		return;
+		return -1;
 	}
 
 	player_t* tmp = head;
@@ -37,6 +59,8 @@ void displayDetails(player_t* head) {
 
 	//display player information
 	displayPlayer(tmp);
+
+	return playerLocation;
 }
 
 //function that searches for a player in the list by irfu number and returns the position in the list or -1 if not found
@@ -69,48 +93,13 @@ int searchByName(player_t* head, char* firstName, char* lastName) {
 }
 
 
-//function that gives the user the option to find a player either by name or by irfu
-int searchForPlayer(player_t* head) {
-
-	int choice;
-	int playerLocation;
-	int irfu;
-	char firstName[20];
-	char lastName[20];
-
-	//give option irfu or name
-	do {
-		printf("\n1 - Find Player by name");
-		printf("\n2 - Find Player by irfu number");
-		printf("\nYour choice: ");
-		scanf("%d", &choice);
-	} while (choice != 1 && choice != 2);
-
-	//call specific function according to user choice
-	if (choice == 1) {
-		printf("Enter Player first and last name: ");
-		scanf("%s %s", firstName, lastName);
-		playerLocation = searchByName(head, firstName, lastName);
-	}
-	else if (choice == 2) {
-		printf("Enter Player irfu: ");
-		scanf("%d", &irfu);
-		playerLocation = searchByIrfu(head, irfu);
-	}
-
-	if (playerLocation < 0) {
-		return -1;
-	}
-
-	return playerLocation;
-}
-
 //function that generates a report of stats for all players in a group specified by the user
 void generateStats(player_t* head) {
 
 	//TODO
 }
 
+//function to make a deep copy of a player struct and return a pointer to it
 player_t* copyPlayer(player_t* old) {
 	player_t* newPlayer = (player_t*)malloc(sizeof(player_t));
 
@@ -119,10 +108,11 @@ player_t* copyPlayer(player_t* old) {
 	newPlayer->age = old->age;
 	newPlayer->weight= old->weight;
 	newPlayer->height= old->height;
+
+	//copy enums
 	newPlayer->metres = old->metres;
 	newPlayer->position = old->position;
 	newPlayer->tackles = old->tackles;
-
 
 	//copy strings
 	strcpy(newPlayer->firstName , old->firstName);
@@ -137,21 +127,22 @@ player_t* copyPlayer(player_t* old) {
 
 //function that displays players of two positions in order of their height
 void displayInOrder(player_t* head) {
-	//TODO
-
+	
 	player_t* tmp = head;
 
+	//make a new list in order of height consisting only of second_row and back_row players
 	player_t* newList = NULL;
 	player_t* newListTmp = newList;
 	player_t* newListPrev;
 
-	//make a new list in order of height consisting only of second_row and back_row players
+	//find all players in the list that match the position criteria
 	while (tmp != NULL) {
-
 		if (tmp->position == SECOND_ROW || tmp->position == BACK_ROW) {
 
+			//copy the player node 
 			player_t* newPlayer = copyPlayer(tmp);
 
+			//if the list is empty, insert the node at the beginning
 			if (newList == NULL) {
 				addFirst(&newList, newPlayer);
 				tmp = tmp->next;
@@ -161,7 +152,7 @@ void displayInOrder(player_t* head) {
 			//find the right position by order of height
 			int position = findLocation(newList, tmp->height, HEIGHT);
 
-			//if irfu number is first in list add to the beginning
+			//if position is first in list add to the beginning
 			if (position == 0) {
 				addFirst(&newList, newPlayer);
 				tmp = tmp->next;
@@ -171,76 +162,70 @@ void displayInOrder(player_t* head) {
 			player_t* newListTmp = newList;
 			player_t* newListPrev;
 
+			//set the cursor nodes to the right position
 			for (int i = 0; i < position; i++) {
 				newListPrev = newListTmp;
 				newListTmp = newListTmp->next;
 			}
 
+			//insert new node between the two cursor nodes
 			newListPrev->next = newPlayer;
 			newPlayer->next = newListTmp;
 		}
 
+		//progress the main list
 		tmp = tmp->next;
 	}
 
-	
+	//display the sorted list
 	displayPlayers(newList);
 
+	//free the sorted list
 	freeLinkedList(newList);
-
-}
-
-// convenience function for prompting for players metres per game
-int getPlayerMetres() {
-
-	printf("\nEnter metres player makes per game: ");
-	printf("\n1 - None");
-	printf("\n2 - Less than 10");
-	printf("\n3 - Less than 20");
-	printf("\n4 - More than 20");
-	printf("\nPosition: ");
-
-	int metres;
-	scanf("%d", &metres);
-
-	return metres;
 }
 
 
-// convenience function for prompting for players tackles per game
-int getPlayerTackles() {
+//function to find a new players position inside the linked list by order of a specified field, either irfu or height
+int findLocation(player_t* head, int num, sortField sortField) {
 
-	printf("\nEnter tackles a player misses per game: ");
-	printf("\n1 - Never");
-	printf("\n2 - Less than 3");
-	printf("\n3 - Less than 5");
-	printf("\n4 - More than 5");
-	printf("\nPosition: ");
+	//temporary head node copy
+	player_t* tmp = head;
+	int position = 0;
 
-	int tackles;
-	scanf("%d", &tackles);
 
-	return tackles;
+	switch (sortField)
+	{
+		//determine correct position by checking irfu number against existing records
+	case IRFU:
+		while (tmp->irfu < num) {
+			position++;
+			tmp = tmp->next;
+
+			if (tmp == NULL) {
+				break;
+			}
+		}
+		break;
+
+		//determine correct position by height 
+	case HEIGHT:
+		while (tmp->height < num) {
+			position++;
+			tmp = tmp->next;
+
+			if (tmp == NULL) {
+				break;
+			}
+		}
+		break;
+
+	default:
+		break;
+	}
+
+	return position;
 }
 
-// convenience function for prompting for players position
-int getPlayerPosition() {
-
-	printf("\nEnter Players' position: ");
-	printf("\n1 - Prop");
-	printf("\n2 - Hooker");
-	printf("\n3 - Second Row");
-	printf("\n4 - Back Row");
-	printf("\n5 - Half Back");
-	printf("\n6 - Centre");
-	printf("\n7 - Winger/Full Back");
-	printf("\nPosition: ");
-
-	int pos;
-	scanf("%d", &pos);
-
-	return pos;
-}
 
 //function that returns the number of elements in the list
 int size(player_t* head) {

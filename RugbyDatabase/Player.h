@@ -1,7 +1,7 @@
+#pragma once
 //header file for a player 
 //defines the player struct and functions that perform operations on a single player
 
-#pragma once
 
 //custom boolean type
 typedef int boolean;
@@ -21,6 +21,7 @@ typedef enum {
 	NONE, LESS_TEN, LESS_TWENTY, MORE_TWENTY 
 }metres;
 
+//enum to specify a field by which a list can be sorted
 typedef enum {
 	IRFU, HEIGHT
 }sortField;
@@ -46,9 +47,6 @@ typedef struct player_t{
 
 //function prototypes for player struct
 void displayPlayer(player_t*);
-const char* findPosition(position);
-const char* findTackles(tackles_missed);
-const char* findMetres(metres);
 player_t* createPlayer(player_t*);
 int getIrfu(player_t* head);
-int findLocation(player_t*, int, sortField);
+

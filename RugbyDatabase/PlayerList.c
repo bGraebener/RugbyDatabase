@@ -19,20 +19,12 @@ void updatePlayer(player_t** head) {
 	player_t* tmp = *head;
 	
 	//find the player in the linked list
-	playerLocation = searchForPlayer(tmp);
-
+	playerLocation = displayDetails(tmp);
+	
 	if (playerLocation < 0) {
 		printf("Player not found!");
 		return;
 	}
-
-	//set the 'cursor' pointer to that player
-	for (int i = 0; i < playerLocation; i++) {
-		tmp = tmp->next;
-	}
-
-	//display player information
-	displayPlayer(tmp);
 
 	//update players information until user quits update menu
 	do {		
@@ -247,4 +239,17 @@ void insertSorted(player_t** head, player_t* newPlayer) {
 	//insert new node
 	previous->next = newPlayer;
 	newPlayer->next = tmp;
+}
+
+
+//iterate over the linked list and free the memory of every node 
+void freeLinkedList(player_t* head) {
+
+	player_t* tmp;
+
+	while (head != NULL) {
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
 }
