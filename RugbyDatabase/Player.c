@@ -1,15 +1,16 @@
 //source file with all implementations for function that operate on a player struct
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "Player.h"
+#include "Menu.h"
 
 
-//function that displays a sinlge players' details
-void displayPlayer(player_t* player) {
-
+//function that displays a single players' details to the specified outputstream
+void displayPlayer(player_t* player, FILE* out) {
+		
 	//arrays to display metres, tackles and position as strings
 	//values correspond with the enum values
 	char tacklesArray[][25] = { "Never", "Less than three", "Less than five", "More than five" };
@@ -17,17 +18,17 @@ void displayPlayer(player_t* player) {
 	char posArray[][25] = { "PROP", "HOOKER", "SECOND ROW", "BACK ROW", "HALF BACK", "CENTRE", "WINGER" };
 
 	//display all details
-	printf("\n\nPlayer Stats: ");
-	printf("\nPlayer IRFU: %d ", player->irfu);
-	printf("\nPlayer Name: %s %s", player->firstName, player->lastName);
-	printf("\nPlayer Age: %d", player->age);
-	printf("\nPlayer Height: %.2f ", player->height);
-	printf("\nPlayer Weight: %.2f", player->weight);
-	printf("\nPlayer Club: %s", player->club);
-	printf("\nPlayers Email: %s", player->email);
-	printf("\nPlayer Position: %s ", posArray[player->position]);
-	printf("\nTackles missed per game: %s", tacklesArray[player->tackles]);
-	printf("\nMetres per Game: %s", metresArray[player->metres]);
+	fprintf(out, "\n\nPlayer Information: ");
+	fprintf(out, "\nPlayer IRFU: %d ", player->irfu);
+	fprintf(out, "\nPlayer Name: %s %s", player->firstName, player->lastName);
+	fprintf(out, "\nPlayer Age: %d", player->age);
+	fprintf(out, "\nPlayer Height: %.2f ", player->height);
+	fprintf(out, "\nPlayer Weight: %.2f", player->weight);
+	fprintf(out, "\nPlayer Club: %s", player->club);
+	fprintf(out, "\nPlayers Email: %s", player->email);
+	fprintf(out, "\nPlayer Position: %s ", posArray[player->position]);
+	fprintf(out, "\nTackles missed per game: %s", tacklesArray[player->tackles]);
+	fprintf(out, "\nMetres per Game: %s", metresArray[player->metres]);
 
 }
 

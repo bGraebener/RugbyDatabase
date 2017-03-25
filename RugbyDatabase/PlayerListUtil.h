@@ -1,11 +1,12 @@
 //header file for list functions that don't change the linked list of players
 #pragma once
+#include <stdio.h>
 #include "Player.h"
 
 //function prototype declarations
 
 //primary functions
-void displayPlayers(player_t*);
+void displayPlayers(player_t*, FILE*);
 int displayDetails(player_t*);
 void displayInOrder(player_t*);
 void generateStats(player_t*);

@@ -1,17 +1,18 @@
 //file for all functions that don't change the linked list of players
 
+#include <string.h>
 #include <stdlib.h>
 #include "PlayerListUtil.h"
 #include "PlayerList.h"
 
 
 
-//function that displays all players' details from the database
-void displayPlayers(player_t* head) {
+//function that sends all players' details to the specified output stream
+void displayPlayers(player_t* head, FILE* out) {
 	player_t* tmp = head;
 
 	while (tmp != NULL) {
-		displayPlayer(tmp);
+		displayPlayer(tmp, out);
 		tmp = tmp->next;
 	}
 }
@@ -58,7 +59,7 @@ int displayDetails(player_t* head) {
 	}
 
 	//display player information
-	displayPlayer(tmp);
+	displayPlayer(tmp, stdout);
 
 	return playerLocation;
 }
@@ -132,7 +133,7 @@ void displayInOrder(player_t* head) {
 
 	//make a new list in order of height consisting only of second_row and back_row players
 	player_t* newList = NULL;
-	player_t* newListTmp = newList;
+	
 	player_t* newListPrev;
 
 	//find all players in the list that match the position criteria
@@ -160,7 +161,6 @@ void displayInOrder(player_t* head) {
 			}
 
 			player_t* newListTmp = newList;
-			player_t* newListPrev;
 
 			//set the cursor nodes to the right position
 			for (int i = 0; i < position; i++) {
@@ -178,7 +178,7 @@ void displayInOrder(player_t* head) {
 	}
 
 	//display the sorted list
-	displayPlayers(newList);
+	displayPlayers(newList, stdout);
 
 	//free the sorted list
 	freeLinkedList(newList);

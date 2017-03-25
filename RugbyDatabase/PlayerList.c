@@ -12,7 +12,7 @@ void updatePlayer(player_t** head) {
 	
 	int choice;
 	int playerLocation;
-	int pos, tackles, metres, irfu, oldIrfu;
+	int pos, tackles, metres, irfu;
 	char* email = (char*)malloc(sizeof(char) * 35);
 
 	//'cursor' pointer

@@ -8,12 +8,12 @@
 #include "PlayerList.h"
 #include "PlayerListUtil.h"
 
+
 void main() {
 	
 	int choice;
 	int irfu;
-	int location;
-
+	
 	//verify user
 	boolean login = displayStartMenu();
 
@@ -40,7 +40,7 @@ void main() {
 			insertSorted(&list, newPlayer);
 			break;
 		case 2:
-			displayPlayers(list);
+			displayPlayers(list, stdout);
 			break;
 		case 3:			
 			displayDetails(list);
@@ -56,7 +56,8 @@ void main() {
 		case 6:
 			generateStats(list);
 			break;
-		case 7:			
+		case 7:
+			printReportToFile(list);
 			break;
 		case 8:
 			displayInOrder(list);
@@ -68,7 +69,7 @@ void main() {
 	};
 
 	//print linked list to file
-	printToFile(list);
+	printListToFile(list);
 
 	//free dynamically allocated memory
 	freeLinkedList(list);
@@ -79,9 +80,8 @@ void main() {
 }
 
 
-
 //function to write the players database to file
-void printToFile(player_t* head) {
+void printListToFile(player_t* head) {
 
 	//temporary head node copy
 	player_t* tmp = (player_t*)malloc(sizeof(player_t));
@@ -117,3 +117,22 @@ void printToFile(player_t* head) {
 	}
 }
 
+//function that prints all players information as well as the statistics to the file 'StatsReport.txt'
+void printReportToFile(player_t* head) {
+
+	FILE* report = fopen("StatsReport.txt", "w");
+
+	if (report != NULL) {
+
+		displayPlayers(head, report);
+
+		//TODO: Call generateStats function
+
+		fclose(report);
+	}
+	else {
+		printf("Couldn't save report to file");
+	}
+
+
+}

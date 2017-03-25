@@ -3,4 +3,5 @@
 #include "Player.h"
 
 //function prototype
-void printToFile(player_t*);
+void printListToFile(player_t*);
+void printReportToFile(player_t*);

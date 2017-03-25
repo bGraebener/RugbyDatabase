@@ -2,7 +2,6 @@
 //header file for a player 
 //defines the player struct and functions that perform operations on a single player
 
-
 //custom boolean type
 typedef int boolean;
 #define true 1
@@ -46,7 +45,7 @@ typedef struct player_t{
 }player_t;
 
 //function prototypes for player struct
-void displayPlayer(player_t*);
+void displayPlayer(player_t*, FILE*);
 player_t* createPlayer(player_t*);
 int getIrfu(player_t* head);
 
