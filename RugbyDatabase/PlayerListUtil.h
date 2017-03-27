@@ -3,6 +3,28 @@
 #include <stdio.h>
 #include "Player.h"
 
+
+typedef union {
+
+	position pos;
+
+	float weight;
+
+}group;
+
+typedef struct
+{
+	int amount;
+
+	group group;
+
+	int tacklesArray[4];
+	int metresArray[4];
+
+
+}stats;
+
+
 //function prototype declarations
 
 //primary functions

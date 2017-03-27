@@ -5,52 +5,6 @@
 #include "PlayerListUtil.h"
 #include "PlayerList.h"
 
-typedef union {
-
-	position pos;
-
-	float weight;
-
-}group;
-
-typedef struct
-{
-	int amount;
-
-	group group;
-
-	int tacklesArray[4];
-	int metresArray[4];
-
-
-}stats;
-
-//
-//typedef struct
-//{
-//	int amount;
-//
-//	position pos;
-//
-//	int tacklesArray[4];
-//	int metresArray[4];
-//
-//
-//}positionStats;
-//
-//
-//typedef struct
-//{
-//	int amount;
-//
-//	float weight;
-//
-//	int tacklesArray[4];
-//	int metresArray[4];
-//
-//
-//}weightStats;
-
 
 //function that sends all players' details to the specified output stream
 void displayPlayers(player_t* head, FILE* out) {
@@ -140,19 +94,17 @@ int searchByName(player_t* head, char* firstName, char* lastName) {
 
 void displayStats(stats* group, FILE* out) {
 
-	fprintf(out, "\nAmount of players in group: %d", group->amount);
+	fprintf(out, "\n%6.2f%% miss no tackles per game:", group->tacklesArray[0] / (float)group->amount * 100);
+	fprintf(out, "\t\t\t%6.2f%% make no metres", group->metresArray[0] / (float)group->amount * 100);
 
-	fprintf(out, "\n%.2f%% miss no tackles:", group->tacklesArray[0] / (float)group->amount * 100);
-	fprintf(out, "\t\t\t%.2f%% make no metres", group->metresArray[0] / (float)group->amount * 100);
+	fprintf(out, "\n%6.2f%% miss less than 3 tackles", group->tacklesArray[1] / (float)group->amount * 100);
+	fprintf(out, "\t\t\t%6.2f%% make less than 10 metres", group->metresArray[1] / (float)group->amount * 100);
 
-	fprintf(out, "\n%.2f%% miss less than 3 tackles", group->tacklesArray[1] / (float)group->amount * 100);
-	fprintf(out, "\t\t\t%.2f%% make less than 10 metres", group->metresArray[1] / (float)group->amount * 100);
+	fprintf(out, "\n%6.2f%% miss less than 5 tackles", group->tacklesArray[2] / (float)group->amount * 100);
+	fprintf(out, "\t\t\t%6.2f%% make less than 20 metres", group->metresArray[2] / (float)group->amount * 100);
 
-	fprintf(out, "\n%.2f%% miss less than 5 tackles", group->tacklesArray[2] / (float)group->amount * 100);
-	fprintf(out, "\t\t\t%.2f%% make less than 20 metres", group->metresArray[2] / (float)group->amount * 100);
-
-	fprintf(out, "\n%.2f%% miss more than 5 tackles", group->tacklesArray[3] / (float)group->amount * 100);
-	fprintf(out, "\t\t\t%.2f%% make more than 20 metres", group->metresArray[3] / (float)group->amount * 100);
+	fprintf(out, "\n%6.2f%% miss more than 5 tackles", group->tacklesArray[3] / (float)group->amount * 100);
+	fprintf(out, "\t\t\t%6.2f%% make more than 20 metres", group->metresArray[3] / (float)group->amount * 100);
 }
 
 //function that generates a report of stats for all players in a group specified by the user
@@ -190,10 +142,10 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 	int counter = 0;
 	int i;
 	
-	/*weightStats* statsArray = (weightStats*)malloc(sizeof(weightStats) * numOfPlayers);	*/
+	//unknown number of unique weights, so dynamic array with size of the list
 	stats* statsArray = (stats*)malloc(sizeof(stats) * numOfPlayers);
 
-	//initialise the arrays in every struct
+	//initialise the arrays in every struct, set all values to 0
 	for (int i = 0; i < numOfPlayers; i++) {
 		statsArray[i].amount = 0;
 		statsArray[i].group.weight = 0;
@@ -203,7 +155,6 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 			statsArray[i].tacklesArray[k] = 0;
 		}
 	}
-
 
 	for (; tmp != NULL; tmp = tmp->next) {
 		
@@ -224,7 +175,8 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 		counter++;
 	}
 
-	fprintf(out, "\n\nStatisitics ordered by weight: ");
+	//send the statistics to the specified output stream
+	fprintf(out, "\n\nStatistics ordered by weight: ");
 
 	for (i = 0; i < numOfPlayers; i++) {
 		
@@ -235,12 +187,13 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 
 		//display stats by weight group
 		fprintf(out, "\n\nWeight Group: %.2f kg: ", statsArray[i].group.weight);
-		displayStats(&statsArray[i], out);
-		
-	}
+		fprintf(out, "\nAmount of players in group: %d", statsArray[i].amount);
+		displayStats(&statsArray[i], out);		
+	}	
 
+	//free dynamic array
+	free(statsArray);
 
-	
 }
 
 void generateStatsByPosition(player_t* tmp, FILE* out) {
@@ -267,7 +220,7 @@ void generateStatsByPosition(player_t* tmp, FILE* out) {
 		statsArray[tmp->position].tacklesArray[tmp->tackles]++;
 	}
 
-	fprintf(out, "\n\nStatisitics ordered by position: ");
+	fprintf(out, "\n\nStatistics ordered by position: ");
 
 	for (int i = 0; i < 7; i++) {
 
@@ -276,21 +229,11 @@ void generateStatsByPosition(player_t* tmp, FILE* out) {
 			continue;
 		}
 
-		//display stats by position
+		//send the statistics to the specified output stream
 		fprintf(out, "\n\nPosition: %s: ", posArray[statsArray[i].group.pos]);
 		fprintf(out, "\nAmount of players in group: %d", statsArray[i].amount);
 
-		fprintf(out, "\n%.2f%% miss no tackles:", statsArray[i].tacklesArray[0] / (float)statsArray[i].amount * 100);
-		fprintf(out, "\t\t%.2f%% make no metres", statsArray[i].metresArray[0] / (float)statsArray[i].amount * 100);
-
-		fprintf(out, "\n%.2f%% miss less than 3 tackles", statsArray[i].tacklesArray[1] / (float)statsArray[i].amount * 100);
-		fprintf(out, "\t\t%.2f%% make less than 10 metres", statsArray[i].metresArray[1] / (float)statsArray[i].amount * 100);
-
-		fprintf(out, "\n%.2f%% miss less than 5 tackles", statsArray[i].tacklesArray[2] / (float)statsArray[i].amount * 100);
-		fprintf(out, "\t\t%.2f%% make less than 20 metres", statsArray[i].metresArray[2] / (float)statsArray[i].amount * 100);
-
-		fprintf(out, "\n%.2f%% miss more than 5 tackles", statsArray[i].tacklesArray[3] / (float)statsArray[i].amount * 100);
-		fprintf(out, "\t\t%.2f%% make more than 20 metres", statsArray[i].metresArray[3] / (float)statsArray[i].amount * 100);
+		displayStats(&statsArray[i], out);
 	}
 }
 
