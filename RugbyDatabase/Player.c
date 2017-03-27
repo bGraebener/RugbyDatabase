@@ -8,7 +8,7 @@
 #include "Menu.h"
 
 
-//function that displays a single players' details to the specified outputstream
+//function that sends a single players' details to the specified outputstream
 void displayPlayer(player_t* player, FILE* out) {
 		
 	//arrays to display metres, tackles and position as strings

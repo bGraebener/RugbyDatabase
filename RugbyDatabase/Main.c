@@ -13,15 +13,17 @@ void main() {
 	
 	int choice;
 	int irfu;
-	
-	//verify user
-	boolean login = displayStartMenu();
 
-	if (!login) {
-		_getch();
-		return;
-	}
-	
+	//
+	////verify user
+	//boolean login = displayStartMenu();
+
+	//if (!login) {
+	//	_getch();
+	//	return;
+	//}
+	//
+
 	//get existing records from file
 	player_t* list = NULL;
 	populateList(&list);
@@ -54,7 +56,7 @@ void main() {
 			deletePlayer(&list, irfu);
 			break;
 		case 6:
-			generateStats(list);
+			generateStats(list, stdout);
 			break;
 		case 7:
 			printReportToFile(list);
