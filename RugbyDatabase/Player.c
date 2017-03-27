@@ -18,17 +18,17 @@ void displayPlayer(player_t* player, FILE* out) {
 	char posArray[][25] = { "PROP", "HOOKER", "SECOND ROW", "BACK ROW", "HALF BACK", "CENTRE", "WINGER" };
 
 	//display all details
-	fprintf(out, "\n\nPlayer Information: ");
-	fprintf(out, "\nPlayer IRFU: %d ", player->irfu);
-	fprintf(out, "\nPlayer Name: %s %s", player->firstName, player->lastName);
-	fprintf(out, "\nPlayer Age: %d", player->age);
-	fprintf(out, "\nPlayer Height: %.2f ", player->height);
-	fprintf(out, "\nPlayer Weight: %.2f", player->weight);
-	fprintf(out, "\nPlayer Club: %s", player->club);
-	fprintf(out, "\nPlayers Email: %s", player->email);
-	fprintf(out, "\nPlayer Position: %s ", posArray[player->position]);
-	fprintf(out, "\nTackles missed per game: %s", tacklesArray[player->tackles]);
-	fprintf(out, "\nMetres per Game: %s", metresArray[player->metres]);
+	fprintf(out, "\n\n\tPlayer Information: ");
+	fprintf(out, "\n\tPlayer IRFU: %d ", player->irfu);
+	fprintf(out, "\n\tPlayer Name: %s %s", player->firstName, player->lastName);
+	fprintf(out, "\n\tPlayer Age: %d", player->age);
+	fprintf(out, "\n\tPlayer Height: %.2f ", player->height);
+	fprintf(out, "\n\tPlayer Weight: %.2f", player->weight);
+	fprintf(out, "\n\tPlayer Club: %s", player->club);
+	fprintf(out, "\n\tPlayers Email: %s", player->email);
+	fprintf(out, "\n\tPlayer Position: %s ", posArray[player->position]);
+	fprintf(out, "\n\tTackles missed per game: %s", tacklesArray[player->tackles]);
+	fprintf(out, "\n\tMetres per Game: %s", metresArray[player->metres]);
 
 }
 

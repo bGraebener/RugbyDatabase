@@ -16,7 +16,7 @@ void displayPlayers(player_t* head, FILE* out) {
 	}
 }
 
-//find user specified player and display the details
+//find user specified player, display the details and return the location in the linked list
 int displayDetails(player_t* head) {
 
 	int choice;
@@ -92,6 +92,7 @@ int searchByName(player_t* head, char* firstName, char* lastName) {
 	return -1;
 }
 
+//function to display a single group statistics report
 void displayStats(stats* group, FILE* out) {
 
 	fprintf(out, "\n%6.2f%% miss no tackles per game:", group->tacklesArray[0] / (float)group->amount * 100);
@@ -107,35 +108,31 @@ void displayStats(stats* group, FILE* out) {
 	fprintf(out, "\t\t\t%6.2f%% make more than 20 metres", group->metresArray[3] / (float)group->amount * 100);
 }
 
-//function that generates a report of stats for all players in a group specified by the user
+//function to ask the user by which order the statistics report is to be ordered
+//delegates then to the appropriate function
 void generateStats(player_t* head, FILE* out) {
 
-	//TODO
 	int choice;
 
 	do {
-
 		printf("\nShow Statistics sorted by:");
 		printf("\n1 - Player Position");
 		printf("\n2 - Weight");
 		printf("\nYour choice: ");
 		scanf("%d", &choice);
-
 	} while (choice != 1 && choice != 2);
 
 	player_t* tmp = head;
 
 	if (choice == 1) {
-
 		generateStatsByPosition(tmp, out);
 	}
 	else {
 		generateStatsByWeight(tmp, out);
 	}
-
-
 }
 
+//function that generates a report of stats for all players grouped by weight
 void generateStatsByWeight(player_t* tmp, FILE* out) {
 
 	int numOfPlayers = size(tmp);	
@@ -156,22 +153,21 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 		}
 	}
 
+	//iterate the whole linked list
 	for (; tmp != NULL; tmp = tmp->next) {
 		
-		float weight = tmp->weight;
-
 		//set the counter either to the end or to the weight that matches the current weight
-		for (i = 0; i < counter && statsArray[i].group.weight != weight; i++) {}
+		for (i = 0; i < counter && statsArray[i].group.weight != tmp->weight; i++) {}
 
 		//record the metres and tackles for the weight group
 		statsArray[i].amount++;
 		statsArray[i].metresArray[tmp->metres]++;
 		statsArray[i].tacklesArray[tmp->tackles]++;
 
-		if (statsArray[i].group.weight != weight) {
+		//first entry for this particular group
+		if (statsArray[i].group.weight != tmp->weight) {
 			statsArray[i].group.weight = tmp->weight;
 		}
-
 		counter++;
 	}
 
@@ -193,9 +189,9 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 
 	//free dynamic array
 	free(statsArray);
-
 }
 
+//function that generates a report of stats for all players grouped by position
 void generateStatsByPosition(player_t* tmp, FILE* out) {
 
 	char posArray[][25] = { "PROP", "HOOKER", "SECOND ROW", "BACK ROW", "HALF BACK", "CENTRE", "WINGER" };

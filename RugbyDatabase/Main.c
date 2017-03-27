@@ -10,7 +10,7 @@
 
 
 void main() {
-	
+
 	int choice;
 	int irfu;
 
@@ -29,12 +29,12 @@ void main() {
 	populateList(&list);
 
 	player_t* newPlayer;
-	
+
 	//display user menu
 	choice = displayMainMenu();
 
 	while (choice != 9) {
-		
+
 		switch (choice)
 		{
 		case 1:
@@ -44,10 +44,10 @@ void main() {
 		case 2:
 			displayPlayers(list, stdout);
 			break;
-		case 3:			
+		case 3:
 			displayDetails(list);
 			break;
-		case 4:			
+		case 4:
 			updatePlayer(&list);
 			break;
 		case 5:
@@ -86,8 +86,7 @@ void main() {
 void printListToFile(player_t* head) {
 
 	//temporary head node copy
-	player_t* tmp = (player_t*)malloc(sizeof(player_t));
-	tmp = head;
+	player_t* tmp = head;
 
 	//attempt to open database file
 	FILE* out = fopen("Rugby.txt", "w");
@@ -126,9 +125,15 @@ void printReportToFile(player_t* head) {
 
 	if (report != NULL) {
 
+		//print the players' details to the report file
+		fprintf(report, "Rugby Players Database: ");
 		displayPlayers(head, report);
 
-		//TODO: Call generateStats function
+		fprintf(report, "Rugby Player Statistics Report");
+		generateStatsByPosition(head, report);
+		generateStatsByWeight(head, report);
+
+		printf("Printed database and report to the file \"StatsReprto.txt\" ");
 
 		fclose(report);
 	}

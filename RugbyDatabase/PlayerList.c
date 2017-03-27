@@ -13,7 +13,7 @@ void updatePlayer(player_t** head) {
 	int choice;
 	int playerLocation;
 	int pos, tackles, metres, irfu;
-	char* email = (char*)malloc(sizeof(char) * 35);
+	char* email;
 
 	//'cursor' pointer
 	player_t* tmp = *head;
@@ -51,13 +51,14 @@ void updatePlayer(player_t** head) {
 			break;
 		case 5:
 			printf("Enter new Weight: ");
-			scanf("%d", &tmp->weight);
+			scanf("%f", &tmp->weight);
 			break;
 		case 6:
 			printf("Enter new Height: ");
-			scanf("%d", &tmp->height);
+			scanf("%f", &tmp->height);
 			break;
 		case 7:
+			email = (char*)malloc(sizeof(char) * 35);
 			do {
 				printf("Enter new Email: ");
 				scanf("%s", email);

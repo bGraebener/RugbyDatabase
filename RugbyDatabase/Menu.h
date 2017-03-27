@@ -4,6 +4,7 @@
 #pragma once
 #include "Player.h"
 #include "Main.h"
+#include "PlayerListUtil.h"
 
 
 //login struct
@@ -20,3 +21,4 @@ int displayUpdateMenu();
 int getPlayerPosition();
 int getPlayerMetres();
 int getPlayerTackles();
+

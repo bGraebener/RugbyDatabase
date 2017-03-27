@@ -2,6 +2,8 @@
 //header file for a player 
 //defines the player struct and functions that perform operations on a single player
 
+#include <stdio.h>
+
 //custom boolean type
 typedef int boolean;
 #define true 1
