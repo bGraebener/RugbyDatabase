@@ -3,21 +3,12 @@
 #include <stdio.h>
 #include "Player.h"
 
-//union and struct to help generate the statistics report
-typedef union {
-
-	position pos;
-
-	float weight;
-
-}group;
+//struct to help generate the statistics report
 
 typedef struct
 {
 	int amount;
-
-	group group;
-
+	
 	int tacklesArray[4];
 	int metresArray[4];
 

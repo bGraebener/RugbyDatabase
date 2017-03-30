@@ -135,36 +135,15 @@ void generateStats(player_t* head, FILE* out) {
 //function that generates a report of stats for all players grouped by weight
 void generateStatsByWeight(player_t* tmp, FILE* out) {
 
-	int numOfPlayers = size(tmp);	
-	int counter = 0;
-	int i;
 	int lowerBound;
 
 	//ask for minimum weight
 	printf("What's the lower weight boundary? ");
 	scanf("%d", &lowerBound);
-	
-	/*
-	//unknown number of unique weights, so dynamic array with size of the list
-	stats* statsArray = (stats*)malloc(sizeof(stats) * numOfPlayers);
-
-	//initialise the arrays in every struct, set all values to 0
-	for (int i = 0; i < numOfPlayers; i++) {
-		statsArray[i].amount = 0;
-		statsArray[i].group.weight = 0;
-
-		for (int k = 0; k < 4; k++) {
-			statsArray[i].metresArray[k] = 0;
-			statsArray[i].tacklesArray[k] = 0;
-		}
-	}
-
-	*/
 
 	stats stats;
 	stats.amount = 0;
-	stats.group.weight = 0;
-
+	
 	for (int k = 0; k < 4; k++) {
 		stats.metresArray[k] = 0;
 		stats.tacklesArray[k] = 0;
@@ -178,98 +157,64 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 			stats.amount++;
 			stats.metresArray[tmp->metres]++;
 			stats.tacklesArray[tmp->tackles]++;
-		}
-
-		stats.group.weight = lowerBound;
+		}		
 	}
 
+	//guard against a division by zero
 	if (stats.amount != 0) {
 
-		fprintf(out, "\n\nWeight Group: %.2f kg: ", stats.group.weight);
+		fprintf(out, "\n\nWeight Group: > %.2f kg: ", lowerBound);
 		fprintf(out, "\nAmount of players in group: %d", stats.amount);
 		displayStats(&stats, out);
 	}
-
-		/*
-		//set the counter either to the end or to the weight that matches the current weight
-		for (i = 0; i < counter && statsArray[i].group.weight != tmp->weight; i++) {}
-
-		//record the metres and tackles for the weight group
-		statsArray[i].amount++;
-		statsArray[i].metresArray[tmp->metres]++;
-		statsArray[i].tacklesArray[tmp->tackles]++;
-	
-		//first entry for this particular group
-		if (statsArray[i].group.weight != tmp->weight) {
-			statsArray[i].group.weight = tmp->weight;
-		}
-		counter++;
+	else {
+		printf("No player with this weight found!");
 	}
 
-
-
-	//send the statistics to the specified output stream
-	fprintf(out, "\n\nStatistics ordered by weight: ");
-
-	for (i = 0; i < numOfPlayers; i++) {
-		
-		//division by zero guard
-		if (statsArray[i].amount == 0) {
-			continue;
-		}
-
-		//display stats by weight group
-		fprintf(out, "\n\nWeight Group: %.2f kg: ", statsArray[i].group.weight);
-		fprintf(out, "\nAmount of players in group: %d", statsArray[i].amount);
-		displayStats(&statsArray[i], out);		
-	}	
-
-	//free dynamic array
-	free(statsArray);
-	
-	*/
 }
 
 //function that generates a report of stats for all players grouped by position
 void generateStatsByPosition(player_t* tmp, FILE* out) {
-
 	char posArray[][25] = { "PROP", "HOOKER", "SECOND ROW", "BACK ROW", "HALF BACK", "CENTRE", "WINGER" };
-	stats statsArray[7];
+	int position;
 
-	//initialise the arrays in every struct
-	for (int i = 0; i < 7; i++) {
-		statsArray[i].amount = 0;
+	//ask for position
+	printf("For which position do you want to generate statistics? ");
+	position = getPlayerPosition() - 1;
 
-		for (int k = 0; k < 4; k++) {
-			statsArray[i].metresArray[k] = 0;
-			statsArray[i].tacklesArray[k] = 0;
-		}
+	//initialise stats struct to keep track of statistics
+	stats stats;	
+	stats.amount = 0;
+
+	for (int k = 0; k < 4; k++) {
+		stats.metresArray[k] = 0;
+		stats.tacklesArray[k] = 0;
 	}
 
-	//gather data about metres and tackles for every position
+	//iterate over the list and gather data of user specified position players
 	for (; tmp != NULL; tmp = tmp->next) {
 
-		statsArray[tmp->position].amount++;
-		statsArray[tmp->position].group.pos = tmp->position;
-		statsArray[tmp->position].metresArray[tmp->metres]++;
-		statsArray[tmp->position].tacklesArray[tmp->tackles]++;
+		if (tmp->position == position)
+		{
+			stats.amount++;			
+			stats.metresArray[tmp->metres]++;
+			stats.tacklesArray[tmp->tackles]++;
+		}
 	}
 
-	fprintf(out, "\n\nStatistics ordered by position: ");
-
-	for (int i = 0; i < 7; i++) {
-
-		//division by zero guard
-		if (statsArray[i].amount == 0) {
-			continue;
-		}
+	//guard against a division by zero
+	if (stats.amount != 0) {
 
 		//send the statistics to the specified output stream
-		fprintf(out, "\n\nPosition: %s: ", posArray[statsArray[i].group.pos]);
-		fprintf(out, "\nAmount of players in group: %d", statsArray[i].amount);
+		fprintf(out, "\n\nPosition: %s: ", posArray[position]);
+		fprintf(out, "\nAmount of players in group: %d", stats.amount);
 
-		displayStats(&statsArray[i], out);
+		displayStats(&stats, out);
 	}
+	else {
+		printf("No players in this position found!");
+	}
+
 }
 
 
@@ -313,7 +258,7 @@ void displayInOrder(player_t* head) {
 
 	//find all players in the list that match the position criteria
 	while (tmp != NULL) {
-		if (tmp->position == SECOND_ROW)  {
+		if (tmp->position == SECOND_ROW) {
 
 			//copy the player node 
 			player_t* newPlayer = copyPlayer(tmp);
