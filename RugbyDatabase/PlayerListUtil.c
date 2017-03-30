@@ -138,7 +138,13 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 	int numOfPlayers = size(tmp);	
 	int counter = 0;
 	int i;
+	int lowerBound;
+
+	//ask for minimum weight
+	printf("What's the lower weight boundary? ");
+	scanf("%d", &lowerBound);
 	
+	/*
 	//unknown number of unique weights, so dynamic array with size of the list
 	stats* statsArray = (stats*)malloc(sizeof(stats) * numOfPlayers);
 
@@ -153,9 +159,38 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 		}
 	}
 
+	*/
+
+	stats stats;
+	stats.amount = 0;
+	stats.group.weight = 0;
+
+	for (int k = 0; k < 4; k++) {
+		stats.metresArray[k] = 0;
+		stats.tacklesArray[k] = 0;
+	}
+
 	//iterate the whole linked list
 	for (; tmp != NULL; tmp = tmp->next) {
-		
+
+		if (tmp->weight >= lowerBound) {
+			//record the metres and tackles for the weight group
+			stats.amount++;
+			stats.metresArray[tmp->metres]++;
+			stats.tacklesArray[tmp->tackles]++;
+		}
+
+		stats.group.weight = lowerBound;
+	}
+
+	if (stats.amount != 0) {
+
+		fprintf(out, "\n\nWeight Group: %.2f kg: ", stats.group.weight);
+		fprintf(out, "\nAmount of players in group: %d", stats.amount);
+		displayStats(&stats, out);
+	}
+
+		/*
 		//set the counter either to the end or to the weight that matches the current weight
 		for (i = 0; i < counter && statsArray[i].group.weight != tmp->weight; i++) {}
 
@@ -163,13 +198,15 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 		statsArray[i].amount++;
 		statsArray[i].metresArray[tmp->metres]++;
 		statsArray[i].tacklesArray[tmp->tackles]++;
-
+	
 		//first entry for this particular group
 		if (statsArray[i].group.weight != tmp->weight) {
 			statsArray[i].group.weight = tmp->weight;
 		}
 		counter++;
 	}
+
+
 
 	//send the statistics to the specified output stream
 	fprintf(out, "\n\nStatistics ordered by weight: ");
@@ -189,6 +226,8 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 
 	//free dynamic array
 	free(statsArray);
+	
+	*/
 }
 
 //function that generates a report of stats for all players grouped by position
@@ -354,6 +393,7 @@ void displayInOrder(player_t* head) {
 
 	//free the sorted list
 	freeLinkedList(secondRowList);
+	freeLinkedList(backRowList);
 }
 
 
