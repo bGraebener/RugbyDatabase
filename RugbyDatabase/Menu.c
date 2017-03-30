@@ -34,11 +34,11 @@ boolean displayStartMenu() {
 		fclose(loginFile);
 	}
 	else {
-		printf("Couldn't open login database");
+		printf("\nCouldn't open login database");
 	}
 
 	//get username
-	printf("Enter your username: ");
+	printf("\nEnter your username: ");
 	scanf("%s", username);
 
 	//get user password
@@ -97,6 +97,7 @@ int displayMainMenu() {
 	return choice;
 }
 
+//display the update menu and read in the user choice
 int displayUpdateMenu() {
 
 	int choice;

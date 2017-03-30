@@ -13,17 +13,10 @@ void main() {
 
 	int choice;
 	int irfu;
-
 	
 	//verify user
-	boolean login = displayStartMenu();
-
-	if (!login) {
-		_getch();
-		return;
-	}
+	while (!displayStartMenu());
 	
-
 	//get existing records from file
 	player_t* list = NULL;
 	populateList(&list);
@@ -50,8 +43,7 @@ void main() {
 		case 4:
 			updatePlayer(&list);
 			break;
-		case 5:
-			
+		case 5:			
 			deletePlayer(&list);
 			break;
 		case 6:
@@ -125,19 +117,18 @@ void printReportToFile(player_t* head) {
 	if (report != NULL) {
 
 		//print the players' details to the report file
-		fprintf(report, "Rugby Players Database: ");
+		fprintf(report, "\nRugby Players Database: ");
 		displayPlayers(head, report);
 
+		//print the statistics to the file
 		fprintf(report, "\n\nRugby Player Statistics Report");
 		generateStats(head, report);
 
-		printf("Printed database and report to the file \"StatsReport.txt\" ");
+		printf("\nPrinted database and report to the file \"StatsReport.txt\" ");
 
 		fclose(report);
 	}
 	else {
-		printf("Couldn't save report to file");
+		printf("\nCouldn't save report to file");
 	}
-
-
 }

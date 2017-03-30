@@ -231,7 +231,6 @@ void generateStatsByPosition(player_t* tmp, FILE* out) {
 }
 
 
-
 //function to make a deep copy of a player struct and return a pointer to it
 player_t* copyPlayer(player_t* old) {
 	player_t* newPlayer = (player_t*)malloc(sizeof(player_t));
@@ -361,7 +360,6 @@ int findLocation(player_t* head, int num, sortField sortField) {
 	//temporary head node copy
 	player_t* tmp = head;
 	int position = 0;
-
 
 	switch (sortField)
 	{
