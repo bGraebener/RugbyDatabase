@@ -14,15 +14,15 @@ void main() {
 	int choice;
 	int irfu;
 
-	//
-	////verify user
-	//boolean login = displayStartMenu();
+	
+	//verify user
+	boolean login = displayStartMenu();
 
-	//if (!login) {
-	//	_getch();
-	//	return;
-	//}
-	//
+	if (!login) {
+		_getch();
+		return;
+	}
+	
 
 	//get existing records from file
 	player_t* list = NULL;

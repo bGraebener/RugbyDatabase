@@ -267,35 +267,69 @@ void displayInOrder(player_t* head) {
 	player_t* tmp = head;
 
 	//make a new list in order of height consisting only of second_row and back_row players
-	player_t* newList = NULL;
+	player_t* secondRowList = NULL;
+	player_t* backRowList = NULL;
 
 	player_t* newListPrev;
 
 	//find all players in the list that match the position criteria
 	while (tmp != NULL) {
-		if (tmp->position == SECOND_ROW || tmp->position == BACK_ROW) {
+		if (tmp->position == SECOND_ROW)  {
 
 			//copy the player node 
 			player_t* newPlayer = copyPlayer(tmp);
 
 			//if the list is empty, insert the node at the beginning
-			if (newList == NULL) {
-				addFirst(&newList, newPlayer);
+			if (secondRowList == NULL) {
+				addFirst(&secondRowList, newPlayer);
 				tmp = tmp->next;
 				continue;
 			}
 
 			//find the right position by order of height
-			int position = findLocation(newList, tmp->height, HEIGHT);
+			int position = findLocation(secondRowList, tmp->height, HEIGHT);
 
 			//if position is first in list add to the beginning
 			if (position == 0) {
-				addFirst(&newList, newPlayer);
+				addFirst(&secondRowList, newPlayer);
 				tmp = tmp->next;
 				continue;
 			}
 
-			player_t* newListTmp = newList;
+			player_t* newListTmp = secondRowList;
+
+			//set the cursor nodes to the right position
+			for (int i = 0; i < position; i++) {
+				newListPrev = newListTmp;
+				newListTmp = newListTmp->next;
+			}
+
+			//insert new node between the two cursor nodes
+			newListPrev->next = newPlayer;
+			newPlayer->next = newListTmp;
+		}
+		else if (tmp->position == BACK_ROW) {
+			//copy the player node 
+			player_t* newPlayer = copyPlayer(tmp);
+
+			//if the list is empty, insert the node at the beginning
+			if (backRowList == NULL) {
+				addFirst(&backRowList, newPlayer);
+				tmp = tmp->next;
+				continue;
+			}
+
+			//find the right position by order of height
+			int position = findLocation(backRowList, tmp->height, HEIGHT);
+
+			//if position is first in list add to the beginning
+			if (position == 0) {
+				addFirst(&backRowList, newPlayer);
+				tmp = tmp->next;
+				continue;
+			}
+
+			player_t* newListTmp = backRowList;
 
 			//set the cursor nodes to the right position
 			for (int i = 0; i < position; i++) {
@@ -312,11 +346,14 @@ void displayInOrder(player_t* head) {
 		tmp = tmp->next;
 	}
 
-	//display the sorted list
-	displayPlayers(newList, stdout);
+	//display the sorted lists
+	printf("\nSecond Row players in order of height:");
+	displayPlayers(secondRowList, stdout);
+	printf("\Back Row players in order of height:");
+	displayPlayers(backRowList, stdout);
 
 	//free the sorted list
-	freeLinkedList(newList);
+	freeLinkedList(secondRowList);
 }
 
 
