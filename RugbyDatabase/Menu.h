@@ -1,7 +1,9 @@
 //header file for all functions that display a menu to the user
 //defines the login struct that is used to verify the user
 
-#pragma once
+#ifndef MENU_H
+#define MENU_H
+
 #include "Player.h"
 #include "Main.h"
 #include "PlayerListUtil.h"
@@ -22,3 +24,5 @@ int getPlayerPosition();
 int getPlayerMetres();
 int getPlayerTackles();
 
+
+#endif // !MENU_H

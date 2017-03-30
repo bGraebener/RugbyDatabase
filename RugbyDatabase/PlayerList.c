@@ -9,6 +9,11 @@
 
 //find user specified player and update the information
 void updatePlayer(player_t** head) {
+
+	if (*head == NULL) {
+		printf("\nList is empty");
+		return;
+	}
 	
 	int choice;
 	int playerLocation;
@@ -93,13 +98,23 @@ void updatePlayer(player_t** head) {
 
 }
 
-void deletePlayer(player_t** head, int irfu) {
+void deletePlayer(player_t** head) {
+
+	if (*head == NULL) {
+		printf("\nList is empty");
+		return;
+	}
 
 	//create two temporary 'cursor' pointers to keep track of 
 	//the current node and the one before since in a singly linked list 
 	//there is no way of going backwards
 	player_t* tmp;
 	player_t* prior;
+
+	int irfu;
+
+	printf("Enter Irfu Number of player to delete: ");
+	scanf("%d", &irfu);
 
 	tmp = *head;
 
@@ -127,6 +142,12 @@ void deletePlayer(player_t** head, int irfu) {
 
 //function to delete the first element in the list
 void deleteFirst(player_t** head) {
+
+	if (*head == NULL) {
+		printf("\nList is empty");
+		return;
+	}
+
 	player_t* tmp = *head;
 
 	*head = tmp->next;

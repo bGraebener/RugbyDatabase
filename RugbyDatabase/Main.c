@@ -51,9 +51,8 @@ void main() {
 			updatePlayer(&list);
 			break;
 		case 5:
-			printf("Enter Irfu Number of player to delete: ");
-			scanf("%d", &irfu);
-			deletePlayer(&list, irfu);
+			
+			deletePlayer(&list);
 			break;
 		case 6:
 			generateStats(list, stdout);
@@ -129,11 +128,10 @@ void printReportToFile(player_t* head) {
 		fprintf(report, "Rugby Players Database: ");
 		displayPlayers(head, report);
 
-		fprintf(report, "Rugby Player Statistics Report");
-		generateStatsByPosition(head, report);
-		generateStatsByWeight(head, report);
+		fprintf(report, "\n\nRugby Player Statistics Report");
+		generateStats(head, report);
 
-		printf("Printed database and report to the file \"StatsReprto.txt\" ");
+		printf("Printed database and report to the file \"StatsReport.txt\" ");
 
 		fclose(report);
 	}

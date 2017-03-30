@@ -1,5 +1,8 @@
 //header file for list functions that don't change the linked list of players
-#pragma once
+
+#ifndef LIST_UTIL_H
+#define LIST_UTIL_H
+
 #include <stdio.h>
 #include "Player.h"
 
@@ -8,7 +11,7 @@
 typedef struct
 {
 	int amount;
-	
+
 	int tacklesArray[4];
 	int metresArray[4];
 
@@ -31,3 +34,5 @@ int findLocation(player_t*, int, sortField);
 void displayStats(stats* group, FILE* out);
 void generateStatsByPosition(player_t*, FILE*);
 void generateStatsByWeight(player_t*, FILE*);
+
+#endif // !LIST_UTIL.H

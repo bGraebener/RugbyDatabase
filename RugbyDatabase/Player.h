@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
 //header file for a player 
 //defines the player struct and functions that perform operations on a single player
 
@@ -19,7 +20,7 @@ typedef enum {
 }tackles_missed;
 
 typedef enum {
-	NONE, LESS_TEN, LESS_TWENTY, MORE_TWENTY 
+	NONE, LESS_TEN, LESS_TWENTY, MORE_TWENTY
 }metres;
 
 //enum to specify a field by which a list can be sorted
@@ -28,7 +29,7 @@ typedef enum {
 }sortField;
 
 //public player struct
-typedef struct player_t{
+typedef struct player_t {
 
 	int irfu;
 	char firstName[25];
@@ -51,3 +52,5 @@ void displayPlayer(player_t*, FILE*);
 player_t* createPlayer(player_t*);
 int getIrfu(player_t* head);
 
+
+#endif // !PLAYER_H

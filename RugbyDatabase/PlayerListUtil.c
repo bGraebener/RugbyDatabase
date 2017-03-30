@@ -8,8 +8,15 @@
 
 //function that sends all players' details to the specified output stream
 void displayPlayers(player_t* head, FILE* out) {
+	
+	//check if list is empty
+	if (head == NULL) {
+		fprintf(out, "\nList is empty!");
+	}
+	
 	player_t* tmp = head;
 
+	//iterate the list until last element and call the display function for single player
 	while (tmp != NULL) {
 		displayPlayer(tmp, out);
 		tmp = tmp->next;
@@ -18,6 +25,12 @@ void displayPlayers(player_t* head, FILE* out) {
 
 //find user specified player, display the details and return the location in the linked list
 int displayDetails(player_t* head) {
+
+	//if list is empty return invalid position
+	if (head == NULL) {
+		printf("\nList is empty!");
+		return -1;
+	}
 
 	int choice;
 	int playerLocation;
@@ -96,16 +109,16 @@ int searchByName(player_t* head, char* firstName, char* lastName) {
 void displayStats(stats* group, FILE* out) {
 
 	fprintf(out, "\n%6.2f%% miss no tackles per game:", group->tacklesArray[0] / (float)group->amount * 100);
-	fprintf(out, "\t\t\t%6.2f%% make no metres", group->metresArray[0] / (float)group->amount * 100);
+	fprintf(out, "\t\t%6.2f%% make no metres", group->metresArray[0] / (float)group->amount * 100);
 
 	fprintf(out, "\n%6.2f%% miss less than 3 tackles", group->tacklesArray[1] / (float)group->amount * 100);
-	fprintf(out, "\t\t\t%6.2f%% make less than 10 metres", group->metresArray[1] / (float)group->amount * 100);
+	fprintf(out, "\t\t%6.2f%% make less than 10 metres", group->metresArray[1] / (float)group->amount * 100);
 
 	fprintf(out, "\n%6.2f%% miss less than 5 tackles", group->tacklesArray[2] / (float)group->amount * 100);
-	fprintf(out, "\t\t\t%6.2f%% make less than 20 metres", group->metresArray[2] / (float)group->amount * 100);
+	fprintf(out, "\t\t%6.2f%% make less than 20 metres", group->metresArray[2] / (float)group->amount * 100);
 
 	fprintf(out, "\n%6.2f%% miss more than 5 tackles", group->tacklesArray[3] / (float)group->amount * 100);
-	fprintf(out, "\t\t\t%6.2f%% make more than 20 metres", group->metresArray[3] / (float)group->amount * 100);
+	fprintf(out, "\t\t%6.2f%% make more than 20 metres", group->metresArray[3] / (float)group->amount * 100);
 }
 
 //function to ask the user by which order the statistics report is to be ordered
@@ -135,11 +148,11 @@ void generateStats(player_t* head, FILE* out) {
 //function that generates a report of stats for all players grouped by weight
 void generateStatsByWeight(player_t* tmp, FILE* out) {
 
-	int lowerBound;
+	float lowerBound;
 
 	//ask for minimum weight
 	printf("What's the lower weight boundary? ");
-	scanf("%d", &lowerBound);
+	scanf("%f", &lowerBound);
 
 	stats stats;
 	stats.amount = 0;
@@ -168,7 +181,7 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 		displayStats(&stats, out);
 	}
 	else {
-		printf("No player with this weight found!");
+		printf("\nNo player with this weight found!");
 	}
 
 }
@@ -179,7 +192,7 @@ void generateStatsByPosition(player_t* tmp, FILE* out) {
 	int position;
 
 	//ask for position
-	printf("For which position do you want to generate statistics? ");
+	printf("\nFor which position do you want to generate statistics? ");
 	position = getPlayerPosition() - 1;
 
 	//initialise stats struct to keep track of statistics
@@ -206,13 +219,13 @@ void generateStatsByPosition(player_t* tmp, FILE* out) {
 	if (stats.amount != 0) {
 
 		//send the statistics to the specified output stream
-		fprintf(out, "\n\nPosition: %s: ", posArray[position]);
+		fprintf(out, "\n\nPosition: %s ", posArray[position]);
 		fprintf(out, "\nAmount of players in group: %d", stats.amount);
 
 		displayStats(&stats, out);
 	}
 	else {
-		printf("No players in this position found!");
+		printf("\nNo players in this position found!");
 	}
 
 }
@@ -331,9 +344,9 @@ void displayInOrder(player_t* head) {
 	}
 
 	//display the sorted lists
-	printf("\nSecond Row players in order of height:");
+	printf("\n\tSecond Row players in order of height:");
 	displayPlayers(secondRowList, stdout);
-	printf("\Back Row players in order of height:");
+	printf("\n\n\tBack Row players in order of height:");
 	displayPlayers(backRowList, stdout);
 
 	//free the sorted list
