@@ -12,6 +12,7 @@ void displayPlayers(player_t* head, FILE* out) {
 	//check if list is empty
 	if (head == NULL) {
 		fprintf(out, "\nList is empty!");
+		return;
 	}
 	
 	player_t* tmp = head;
