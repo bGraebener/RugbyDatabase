@@ -37,12 +37,12 @@ boolean displayStartMenu() {
 		printf("\nCouldn't open login database");
 	}
 
-	//get username
-	printf("\nEnter your username: ");
+	//get username	
+	printf("\n\nPlease enter your username: ");
 	scanf("%s", username);
 
 	//get user password
-	printf("Enter your password: ");
+	printf("Please enter your password: ");
 
 	//mask user input for password
 	for (int i = 0; i < 6; i++) {
@@ -66,7 +66,7 @@ boolean checkCredentials(login* records, char* username, char password[6]) {
 				}
 			}
 			if (match == 1) {
-				printf("\nWelcome %s!", username);
+				printf("\n\nWelcome %s!", username);
 				return true;
 			}
 		}
@@ -80,11 +80,8 @@ int displayMainMenu() {
 
 	int choice;
 	int result;
-
-	printf("\n\nWelcome to the Rugby Database!");
-
+	
 	do {
-
 		printf("\n1 - Add a player to the database");
 		printf("\n2 - Display all players in database");
 		printf("\n3 - Display player details");

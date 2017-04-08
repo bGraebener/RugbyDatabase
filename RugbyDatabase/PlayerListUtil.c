@@ -189,7 +189,7 @@ void generateStatsByWeight(player_t* tmp, FILE* out) {
 
 //function that generates a report of stats for all players grouped by position
 void generateStatsByPosition(player_t* tmp, FILE* out) {
-	char posArray[][25] = { "PROP", "HOOKER", "SECOND ROW", "BACK ROW", "HALF BACK", "CENTRE", "WINGER" };
+	char posArray[][25] = { "Prop", "Hooker", "Second Row", "Back Row", "Half Back", "Centre", "Winger" };
 	int position;
 
 	//ask for position
@@ -344,9 +344,9 @@ void displayInOrder(player_t* head) {
 	}
 
 	//display the sorted lists
-	printf("\n\tSecond Row players in order of height:");
+	printf("\nSecond Row players in order of height:");
 	displayPlayers(secondRowList, stdout);
-	printf("\n\n\tBack Row players in order of height:");
+	printf("\n\nBack Row players in order of height:");
 	displayPlayers(backRowList, stdout);
 
 	//free the sorted list

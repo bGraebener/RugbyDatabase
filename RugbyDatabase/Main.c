@@ -13,15 +13,16 @@ void main() {
 
 	int choice;
 	int irfu;
+	player_t* newPlayer;
+	player_t* list = NULL;
 	
+	printf("\nWelcome to the Rugby Player Database!");
+
 	//verify user
 	while (!displayStartMenu());
 	
 	//get existing records from file
-	player_t* list = NULL;
 	populateList(&list);
-
-	player_t* newPlayer;
 
 	//display user menu
 	choice = displayMainMenu();
@@ -36,6 +37,7 @@ void main() {
 			break;
 		case 2:
 			displayPlayers(list, stdout);
+			printf("\n");
 			break;
 		case 3:
 			displayDetails(list);
@@ -124,7 +126,7 @@ void printReportToFile(player_t* head) {
 		fprintf(report, "\n\nRugby Player Statistics Report");
 		generateStats(head, report);
 
-		printf("\nPrinted database and report to the file \"StatsReport.txt\" ");
+		printf("\nPrinted database and report to the file \"StatsReport.txt\" \n");
 
 		fclose(report);
 	}
