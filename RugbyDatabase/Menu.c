@@ -102,21 +102,24 @@ int displayUpdateMenu() {
 
 	int choice;
 
-	printf("\n\nWhat fields do you want to update?");
-	printf("\n1 - IRFU");
-	printf("\n2 - First Name");
-	printf("\n3 - Last Name");
-	printf("\n4 - Age");
-	printf("\n5 - Weight");
-	printf("\n6 - Height");
-	printf("\n7 - Email");
-	printf("\n8 - Club");
-	printf("\n9 - Position");
-	printf("\n10 - Tackles missed");
-	printf("\n11 - Metres per game");
-	printf("\n12 - Finished");
-	printf("\nYour choice: ");
-	scanf("%d", &choice);
+	do {
+		printf("\n\nWhat fields do you want to update?");
+		printf("\n1 - IRFU");
+		printf("\n2 - First Name");
+		printf("\n3 - Last Name");
+		printf("\n4 - Age");
+		printf("\n5 - Weight");
+		printf("\n6 - Height");
+		printf("\n7 - Email");
+		printf("\n8 - Club");
+		printf("\n9 - Position");
+		printf("\n10 - Tackles missed");
+		printf("\n11 - Metres per game");
+		printf("\n12 - Finished");
+		printf("\nYour choice: ");
+		scanf("%d", &choice);
+
+	} while (choice > 12 || choice < 1);
 
 	return choice;
 }
@@ -124,15 +127,21 @@ int displayUpdateMenu() {
 // convenience function for prompting for players metres per game
 int getPlayerMetres() {
 
-	printf("\nEnter metres player makes per game: ");
-	printf("\n1 - None");
-	printf("\n2 - Less than 10");
-	printf("\n3 - Less than 20");
-	printf("\n4 - More than 20");
-	printf("\nPosition: ");
-
 	int metres;
-	scanf("%d", &metres);
+
+	do {
+
+		printf("\nEnter metres player makes per game: ");
+		printf("\n1 - None");
+		printf("\n2 - Less than 10");
+		printf("\n3 - Less than 20");
+		printf("\n4 - More than 20");
+		printf("\nPosition: ");
+
+		
+		scanf("%d", &metres);
+
+	} while (metres > 4 || metres < 1);
 
 	return metres;
 }
@@ -141,15 +150,20 @@ int getPlayerMetres() {
 // convenience function for prompting for players tackles per game
 int getPlayerTackles() {
 
-	printf("\nEnter tackles a player misses per game: ");
-	printf("\n1 - Never");
-	printf("\n2 - Less than 3");
-	printf("\n3 - Less than 5");
-	printf("\n4 - More than 5");
-	printf("\nPosition: ");
-
 	int tackles;
-	scanf("%d", &tackles);
+
+	do {
+
+		printf("\nEnter tackles a player misses per game: ");
+		printf("\n1 - Never");
+		printf("\n2 - Less than 3");
+		printf("\n3 - Less than 5");
+		printf("\n4 - More than 5");
+		printf("\nPosition: ");
+
+		scanf("%d", &tackles);
+	} while (tackles > 4 || tackles < 1);
+
 
 	return tackles;
 }

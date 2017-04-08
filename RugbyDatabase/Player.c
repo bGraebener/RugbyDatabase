@@ -92,6 +92,27 @@ player_t* createPlayer(player_t* head) {
 	printf("Enter Players' email: ");
 	scanf("%s", newPlayer->email);
 
+	int atIndex;
+	int dotComIndex;
+	char* at = strstr(newPlayer->email, "@");
+	char* dotCom = strstr(newPlayer->email, ".com");
+
+	if (at != NULL && dotCom != NULL) {
+		atIndex = at -newPlayer->email;
+		dotComIndex = dotCom- newPlayer->email;
+
+		while (dotComIndex < atIndex || atIndex == 0) {
+			printf("\nInvalid Email! '@' can't be first character and '.com' has to be last");
+			printf("\nEnter Players' email: ");
+			scanf("%s", newPlayer->email);
+
+			at = strstr(newPlayer->email, "@");
+			dotCom = strstr(newPlayer->email, ".com");
+			atIndex = at - newPlayer->email;
+			dotComIndex = dotCom - newPlayer->email;
+		}
+	}
+
 	while (strstr(newPlayer->email, "@") == NULL || strstr(newPlayer->email, ".com") == NULL) {
 		printf("\nInvalid Email! must contain '@' and '.com'");
 		printf("\nEnter Players' email: ");
