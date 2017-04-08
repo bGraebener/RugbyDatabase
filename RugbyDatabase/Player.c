@@ -10,7 +10,7 @@
 
 //function that sends a single players' details to the specified outputstream
 void displayPlayer(player_t* player, FILE* out) {
-		
+
 	//arrays to display metres, tackles and position as strings
 	//values correspond with the enum values
 	char tacklesArray[][25] = { "Never", "Less than three", "Less than five", "More than five" };
@@ -40,13 +40,20 @@ int getIrfu(player_t* head) {
 	tmp = head;
 	int irfu;
 	boolean duplicate;
+	int result;
 
 	//check if irfu number is unique
 	do {
 		duplicate = false;
-		printf("Enter Players' IRFU: ");
-		scanf("%d", &irfu);
 
+		//check for valid input
+		do {
+			printf("Enter Players' IRFU: ");
+			result = scanf("%d", &irfu);
+			fseek(stdin, 0, SEEK_END);
+		} while (result < 1);
+
+		//iterate the list and check for existing irfu number
 		for (; tmp != NULL; tmp = tmp->next) {
 			if (tmp->irfu == irfu) {
 				duplicate = true;
@@ -66,6 +73,8 @@ player_t* createPlayer(player_t* head) {
 	player_t* tmp;
 	tmp = head;
 
+	int result;
+
 	//get players unique irfu number
 	newPlayer->irfu = getIrfu(head);
 
@@ -75,50 +84,22 @@ player_t* createPlayer(player_t* head) {
 
 	printf("Enter Players' last name: ");
 	scanf("%s", newPlayer->lastName);
-
+	
 	printf("Enter Players' age: ");
-	scanf("%d", &newPlayer->age);
-
-	printf("Enter Players' height: ");
-	scanf("%f", &newPlayer->height);
-
-	printf("Enter Players' weight: ");
-	scanf("%f", &newPlayer->weight);
-
+	newPlayer->age = getValidInput();
+	
+	printf("Enter Players' height (cm): ");
+	newPlayer->height = getValidInput();
+		
+	printf("Enter Players' weight (kg): ");
+	newPlayer->weight = getValidInput();
+		
 	printf("Enter Players' club: ");
 	scanf("%s", newPlayer->club);
-
-	//check if email has both an '@' an a '.com' 
+		
 	printf("Enter Players' email: ");
-	scanf("%s", newPlayer->email);
-
-	int atIndex;
-	int dotComIndex;
-	char* at = strstr(newPlayer->email, "@");
-	char* dotCom = strstr(newPlayer->email, ".com");
-
-	if (at != NULL && dotCom != NULL) {
-		atIndex = at -newPlayer->email;
-		dotComIndex = dotCom- newPlayer->email;
-
-		while (dotComIndex < atIndex || atIndex == 0) {
-			printf("\nInvalid Email! '@' can't be first character and '.com' has to be last");
-			printf("\nEnter Players' email: ");
-			scanf("%s", newPlayer->email);
-
-			at = strstr(newPlayer->email, "@");
-			dotCom = strstr(newPlayer->email, ".com");
-			atIndex = at - newPlayer->email;
-			dotComIndex = dotCom - newPlayer->email;
-		}
-	}
-
-	while (strstr(newPlayer->email, "@") == NULL || strstr(newPlayer->email, ".com") == NULL) {
-		printf("\nInvalid Email! must contain '@' and '.com'");
-		printf("\nEnter Players' email: ");
-		scanf("%s", newPlayer->email);
-	}
-
+	strcpy(newPlayer->email, getValidEmail());
+		
 	//get position, tackles and metres as enums
 	int pos = getPlayerPosition();
 	newPlayer->position = pos - 1;
@@ -132,4 +113,63 @@ player_t* createPlayer(player_t* head) {
 	return newPlayer;
 }
 
+//function that checks for valid integer input and returns it
+int getValidInput() {
+	int input;
+	int result; 
 
+	result = scanf("%f", &input);
+	while (result < 1) {
+		fseek(stdin, 0, SEEK_END);
+		printf("\nInvalid input! Try again!");
+		printf("\nEnter Value: ");
+		result = scanf("%f", &input);
+	}
+	return input;
+}
+
+
+//function that checks and return a valid email
+char* getValidEmail() {
+
+	char email[35];
+
+	scanf("%s", email);
+
+	//store position of '@' and '.com'
+	int atIndex;
+	int dotComIndex;
+	char* at = strstr(email, "@");
+	char* dotCom = strstr(email, ".com");
+
+	//find the position where the '.com' should be
+	int emailEnd = strlen(email) - 1 - 4;
+
+	//get new input while email not contains a '.com' or '@'
+	while (strstr(email, "@") == NULL || strstr(email, ".com") == NULL) {
+		printf("\nInvalid Email! must contain '@' and '.com'");
+		printf("\nEnter Players' email: ");
+		scanf("%s", email);
+	}
+
+	//while the '@' is either in first position or after the '.com' 
+	//or while '.com' is not at the end of the email get new input
+	if (at != NULL && dotCom != NULL) {
+		atIndex = at - email;
+		dotComIndex = dotCom - email;
+
+		while (dotComIndex < atIndex || atIndex == 0 || dotComIndex < emailEnd) {
+			printf("\nInvalid Email! '@' can't be first character and '.com' has to be last");
+			printf("\nEnter Players' email: ");
+			scanf("%s", email);
+
+			at = strstr(email, "@");
+			dotCom = strstr(email, ".com");
+			emailEnd = strlen(email) - 1 - 4;
+			atIndex = at - email;
+			dotComIndex = dotCom - email;
+		}
+	}	
+
+	return email;
+}

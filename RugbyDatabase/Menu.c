@@ -50,7 +50,7 @@ boolean displayStartMenu() {
 		printf("*");
 	}
 
-	return checkCredentials(records, username, password);	
+	return checkCredentials(records, username, password);
 }
 
 //function that checks the user entered name and password against the records in the login array and returns whether they match or not
@@ -79,20 +79,26 @@ boolean checkCredentials(login* records, char* username, char password[6]) {
 int displayMainMenu() {
 
 	int choice;
+	int result;
 
 	printf("\n\nWelcome to the Rugby Database!");
 
-	printf("\n1 - Add a player to the database");
-	printf("\n2 - Display all players in database");
-	printf("\n3 - Display player details");
-	printf("\n4 - Update a players statistic");
-	printf("\n5 - Delete a player");
-	printf("\n6 - Generate statistics");
-	printf("\n7 - Print report to file");
-	printf("\n8 - List players in order");
-	printf("\n9 - Quit");
-	printf("\nYour choice: ");
-	scanf("%d", &choice);
+	do {
+
+		printf("\n1 - Add a player to the database");
+		printf("\n2 - Display all players in database");
+		printf("\n3 - Display player details");
+		printf("\n4 - Update a players statistic");
+		printf("\n5 - Delete a player");
+		printf("\n6 - Generate statistics");
+		printf("\n7 - Print report to file");
+		printf("\n8 - List players in order");
+		printf("\n9 - Quit");
+		printf("\nYour choice: ");
+
+		result = scanf("%d", &choice);
+		fseek(stdin, 0, SEEK_END);
+	} while (choice < 0 || choice > 9 || result < 1);
 
 	return choice;
 }
@@ -101,6 +107,7 @@ int displayMainMenu() {
 int displayUpdateMenu() {
 
 	int choice;
+	int result;
 
 	do {
 		printf("\n\nWhat fields do you want to update?");
@@ -117,9 +124,10 @@ int displayUpdateMenu() {
 		printf("\n11 - Metres per game");
 		printf("\n12 - Finished");
 		printf("\nYour choice: ");
-		scanf("%d", &choice);
-
-	} while (choice > 12 || choice < 1);
+		
+		result = scanf("%d", &choice);
+		fseek(stdin, 0, SEEK_END);
+	} while (choice > 12 || choice < 1 || result < 1);
 
 	return choice;
 }
@@ -128,20 +136,24 @@ int displayUpdateMenu() {
 int getPlayerMetres() {
 
 	int metres;
+	int result;
 
-	do {
+	printf("\nEnter metres player makes per game: ");
+	printf("\n1 - None");
+	printf("\n2 - Less than 10");
+	printf("\n3 - Less than 20");
+	printf("\n4 - More than 20");
+	printf("\nMetres: ");
+	
+	result = scanf("%d", &metres);
 
-		printf("\nEnter metres player makes per game: ");
-		printf("\n1 - None");
-		printf("\n2 - Less than 10");
-		printf("\n3 - Less than 20");
-		printf("\n4 - More than 20");
-		printf("\nPosition: ");
-
-		
-		scanf("%d", &metres);
-
-	} while (metres > 4 || metres < 1);
+	//check for valid input
+	while (metres > 4 || metres < 1 || result < 1) {
+		fseek(stdin, 0, SEEK_END);
+		printf("\nInvalid input! Try again!");
+		printf("\nMetres: ");
+		result = scanf("%d", &metres);
+	}
 
 	return metres;
 }
@@ -151,25 +163,33 @@ int getPlayerMetres() {
 int getPlayerTackles() {
 
 	int tackles;
+	int result;
 
-	do {
+	printf("\nEnter tackles a player misses per game: ");
+	printf("\n1 - Never");
+	printf("\n2 - Less than 3");
+	printf("\n3 - Less than 5");
+	printf("\n4 - More than 5");
+	printf("\nTackles: ");
 
-		printf("\nEnter tackles a player misses per game: ");
-		printf("\n1 - Never");
-		printf("\n2 - Less than 3");
-		printf("\n3 - Less than 5");
-		printf("\n4 - More than 5");
-		printf("\nPosition: ");
+	result = scanf("%d", &tackles);
 
-		scanf("%d", &tackles);
-	} while (tackles > 4 || tackles < 1);
-
+	//check for valid input
+	while (tackles > 4 || tackles < 1 || result < 1) {
+		fseek(stdin, 0, SEEK_END);
+		printf("\nInvalid input! Try again!");
+		printf("\nTackles: ");
+		result = scanf("%d", &tackles);
+	}
 
 	return tackles;
 }
 
 // convenience function for prompting for players position
 int getPlayerPosition() {
+	
+	int pos;
+	int result;
 
 	printf("\nEnter Players' position: ");
 	printf("\n1 - Prop");
@@ -181,8 +201,15 @@ int getPlayerPosition() {
 	printf("\n7 - Winger/Full Back");
 	printf("\nPosition: ");
 
-	int pos;
-	scanf("%d", &pos);
+	result = scanf("%d", &pos);
+
+	//check for valid input
+	while (pos > 7 || pos < 1 || result < 1) {
+		fseek(stdin, 0, SEEK_END);
+		printf("\nInvalid input! Try again!");
+		printf("\nPosition: ");
+		result = scanf("%d", &pos);
+	}
 
 	return pos;
 }

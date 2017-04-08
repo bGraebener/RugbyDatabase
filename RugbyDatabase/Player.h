@@ -53,4 +53,8 @@ player_t* createPlayer(player_t*);
 int getIrfu(player_t* head);
 
 
+//utility functions
+char* getValidEmail();
+int getValidInput();
+
 #endif // !PLAYER_H

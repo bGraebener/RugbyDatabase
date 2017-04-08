@@ -52,27 +52,19 @@ void updatePlayer(player_t** head) {
 			break;
 		case 4:
 			printf("Enter new Age: ");
-			scanf("%d", &tmp->age);
+			tmp->age = getValidInput();
 			break;
 		case 5:
 			printf("Enter new Weight: ");
-			scanf("%f", &tmp->weight);
+			tmp->weight = getValidInput();
 			break;
 		case 6:
 			printf("Enter new Height: ");
-			scanf("%f", &tmp->height);
+			tmp->height = getValidInput();
 			break;
 		case 7:
-			email = (char*)malloc(sizeof(char) * 35);
-			do {
-				printf("Enter new Email: ");
-				scanf("%s", email);
-
-			} while (strstr(email, "@") == NULL || strstr(email, ".com") == NULL);
-
-			strcpy(tmp->email, email);
-			free(email);
-
+			printf("Enter new Email: ");
+			strcpy(tmp->email, getValidEmail());
 			break;
 		case 8:
 			printf("Enter new Club: ");
